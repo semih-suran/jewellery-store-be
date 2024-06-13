@@ -1,0 +1,246 @@
+{
+  "GET /api": {
+    "description": "Provides a JSON representation of all available endpoints in the API.",
+    "queries": [],
+    "exampleResponse": {
+      "GET /api/articles": {
+        "description": "Retrieves all articles using Last In, First Out (LIFO) order.",
+        "queries": ["author", "topic", "sort_by", "order"],
+        "exampleResponse": {
+          "author": "jessjelly",
+          "title": "Who are the most followed clubs and players on Instagram?",
+          "article_id": 19,
+          "topic": "football",
+          "created_at": "2020-09-13T13:02:00.000Z",
+          "votes": 0,
+          "article_img_url": "https://images.pexels.com/photos/685382/pexels-photo-685382.jpeg?w=700&h=700",
+          "comment_count": "13"
+        }
+      }
+    }
+  },
+
+  "GET /api/items": {
+    "description": "Retrieves an array of all available items.",
+    "queries": [],
+    "exampleResponse": {
+      "items": [
+        {
+          "item_id": "j1",
+          "name": "Black Rock Necklace",
+          "description": "This captivating golden necklace, adorned with a cluster of sparkling black rocks, feels like a serendipitous discovery. It could be the missing piece you've been searching for, adding a touch of unexpected brilliance to any outfit.",
+          "color1": "gold",
+          "color2": "black",
+          "size": 6,
+          "type": "necklace",
+          "style": "retro",
+          "price": 14.95,
+          "quantity": 25,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": 0,
+          "comment_count": 0,
+          "images": [
+            "https://m.media-amazon.com/images/I/71Ky9K3c7aL._AC_UY1000_DpWeblab_.jpg",
+            "https://m.media-amazon.com/images/I/71Ky9K3c7aL._AC_UY1000_DpWeblab_.jpg",
+            "https://m.media-amazon.com/images/I/71Ky9K3c7aL._AC_UY1000_DpWeblab_.jpg"
+          ],
+          "created_at": "2024-06-03T12:00:00Z",
+          "updated_at": "2024-06-03T12:00:00Z"
+        }
+      ]
+    }
+  },
+
+  "GET /api/topics": {
+    "description": "Retrieves an array of all available topics.",
+    "queries": [],
+    "exampleResponse": {
+      "topics": [
+        {
+          "slug": "coding",
+          "description": "Code is love, code is life"
+        },
+        {
+          "slug": "football",
+          "description": "FOOTIE!"
+        },
+        {
+          "slug": "cooking",
+          "description": "Hey good looking, what you got cooking?"
+        }
+      ]
+    }
+  },
+
+  "GET /api/articles?topic=cooking": {
+    "description": "Retrieves an array of all available articals with a certain topic.",
+    "queries": ["cooking", "coding", "football"],
+    "exampleResponse": {
+      "topics": [
+        {
+          "article_id": 25,
+          "title": "Sweet potato & butternut squash soup with lemon & garlic toast",
+          "topic": "cooking",
+          "author": "weegembump",
+          "body": "Roast your vegetables in honey before blitzing into this velvety smooth, spiced soup - served with garlicky, zesty ciabatta slices for dipping",
+          "created_at": "2020-03-11T21:16:00.000Z",
+          "votes": 0,
+          "article_img_url": "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?w=700&h=700"
+        },
+        {
+          "article_id": 26,
+          "title": "HOW COOKING HAS CHANGED US",
+          "topic": "cooking",
+          "author": "weegembump",
+          "body": "In a cave in South Africa, archaeologists have unearthed the remains of a million-year-old campfire, and discovered tiny bits of animal bones and ash from plants. It’s the oldest evidence of our ancient human ancestors—probably Homo erectus, a species that preceded ours—cooking a meal.",
+          "created_at": "2020-04-06T00:00:00.000Z",
+          "votes": 0,
+          "article_img_url": "https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?w=700&h=700"
+        }
+      ]
+    }
+  },
+
+  "GET /api/articles?sort_by=article_id&order=asc": {
+    "description": "Retrieves an array of all available articles by article_id in ascending order.",
+    "queries": [
+      [
+        "created_at",
+        "author",
+        "title",
+        "votes",
+        "comment_count",
+        "topic",
+        "article_id"
+      ],
+      ["asc", "desc"]
+    ],
+    "exampleResponse": [
+      {
+        "author": "jessjelly",
+        "title": "Running a Node App",
+        "article_id": 1,
+        "topic": "coding",
+        "created_at": "2020-11-07T06:03:00.000Z",
+        "votes": 0,
+        "article_img_url": "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?w=700&h=700",
+        "comment_count": "8"
+      },
+      {
+        "author": "jessjelly",
+        "title": "The Rise Of Thinking Machines: How IBM's Watson Takes On The World",
+        "article_id": 2,
+        "topic": "coding",
+        "created_at": "2020-05-14T00:02:00.000Z",
+        "votes": 0,
+        "article_img_url": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?w=700&h=700",
+        "comment_count": "6"
+      }
+    ]
+  },
+
+  "GET /api/users": {
+    "description": "Retrieves information about all users.",
+    "queries": [],
+    "exampleResponse": {
+      "users": [
+        {
+          "username": "tickle122",
+          "name": "Tom Tickle",
+          "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"
+        }
+      ]
+    }
+  },
+
+  "GET /api/articles": {
+    "description": "Retrieves all articles using Last In, First Out (LIFO) order.",
+    "queries": [],
+    "exampleResponse": [
+      {
+        "author": "grumpy19",
+        "title": "The Notorious MSG’s Unlikely Formula For Success",
+        "article_id": 34,
+        "topic": "cooking",
+        "created_at": "2020-11-22T11:13:00.000Z",
+        "votes": 0,
+        "article_img_url": "https://images.pexels.com/photos/2403392/pexels-photo-2403392.jpeg?w=700&h=700",
+        "comment_count": "11"
+      },
+      {
+        "author": "tickle122",
+        "title": "The battle for Node.js security has only begun",
+        "article_id": 12,
+        "topic": "coding",
+        "created_at": "2020-11-15T13:25:00.000Z",
+        "votes": 0,
+        "article_img_url": "https://images.pexels.com/photos/10845119/pexels-photo-10845119.jpeg?w=700&h=700",
+        "comment_count": "7"
+      }
+    ]
+  },
+
+  "GET /api/articles/:article_id/comments": {
+    "description": "Retrieves comments for a specific article with its ID using LIFO order.",
+    "queries": [],
+    "exampleResponse": [
+      {
+        "comment_id": 258,
+        "body": "Rerum occaecati provident et reprehenderit. Possimus dignissimos quo. Alias ut aut at qui. Ut quasi incidunt porro. Accusantium omnis facilis.",
+        "article_id": 8,
+        "author": "jessjelly",
+        "votes": -1,
+        "created_at": "2020-11-10T20:16:00.000Z"
+      },
+      {
+        "comment_id": 77,
+        "body": "Hic qui omnis qui sit deserunt velit labore commodi repellat. Minus voluptatum dolore libero voluptatem praesentium aut iusto harum. Consequatur sit quasi. Est ad minus inventore ut reiciendis. Quos incidunt rerum. Ut omnis in voluptatum nesciunt.",
+        "article_id": 8,
+        "author": "tickle122",
+        "votes": -2,
+        "created_at": "2020-11-06T19:20:00.000Z"
+      }
+    ]
+  },
+
+  "PATCH /api/articles/:article_id": {
+    "description": "Updates the vote count for a specific article.",
+    "queries": [{ "inc_votes": 18 }],
+    "exampleResponse": [
+      {
+        "article_id": 8,
+        "author": "cooljmessy",
+        "title": "Express.js: A Server-Side JavaScript Framework",
+        "topic": "coding",
+        "created_at": "2020-10-05T23:23:00.000Z",
+        "votes": 18,
+        "article_img_url": "https://images.pexels.com/photos/11035482/pexels-photo-11035482.jpeg?w=700&h=700",
+        "comment_count": "7"
+      }
+    ]
+  },
+
+  "  POST /api/articles/:article_id/comments": {
+    "description": "Posts a new comment to a specific article.",
+    "queries": [
+      { "username": "lurker", "body": "This article is FAN TEST IC." }
+    ],
+    "exampleResponse": [
+      {
+        "comment_id": 404,
+        "body": "This article is FAN TEST IC.",
+        "article_id": 8,
+        "author": "lurker",
+        "votes": 0,
+        "created_at": "2024-01-08T08:08:08.000Z"
+      }
+    ]
+  },
+
+  "DELETE /api/comments/:comment_id": {
+    "description": "deletes a comment by comment_id",
+    "queries": [":comment_id"],
+    "exampleResponse": {}
+  }
+}

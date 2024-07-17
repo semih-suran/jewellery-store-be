@@ -1,21 +1,47 @@
-# Jewellery Shop API - Backend Project
+# Portfolio API - Backend Project
 
-## Hosted Version
+Welcome to my project!
 
-Access the live NC News platform via the following links:
+This project is a work-in-progress e-commerce website for a jewellery store. It aims to provide users with a seamless shopping experience for purchasing earrings, rings, necklaces, and bracelets.
 
-- **Netlify Web Page**: [NC News on Netlify](https://main--nc-news-semih.netlify.app/)
-- **Onrender Database**: [NC News API on Onrender](https://thenews-lhhv.onrender.com/api/)
+## Figma Design
 
-## Project Overview
+Check out the Figma Design of the Jewellery Store: [Link will be updated!](https://jewellery-store-semih.netlify.app/)
 
-The NC News API is a robust web API designed to manage various aspects of a content platform. It provides a comprehensive set of endpoints for handling topics, articles, comments, and user data. Key features include the ability to retrieve information about topics, articles, and users, post comments to articles, update article votes, and delete comments. This project aims to deliver a flexible and functional API to facilitate seamless content management operations.
+## Live Page on Netlify
+
+Check out the live demo of the Jewellery Store: [Jewellery Store Live Page](https://jewellery-store-semih.netlify.app/)
+
+## Backend on Render
+
+Check out the Endpoints of the Jewellery Store: [Jewellery Store Endpoints](https://jewellery-store-be.onrender.com/api)
+
+## Tech Stack
+
+- React
+- React Router
+- Axios (for API requests)
+- Tailwind CSS (for styling)
+- JavaScript
+
+## Authentication
+
+- OAuth 2.0: Utilized for authentication, providing secure access to the application using OAuth 2.0 protocol.
+
+- JWT (JSON Web Tokens): Used for secure transmission of information between parties, often employed for user authentication.
 
 ## Features
+
+- Browse and purchase a variety of jewellery items.
+- Filter items by category (earrings, rings, necklaces, bracelets).
+- View detailed information about each item.
+- Add items to the shopping cart.
+- Checkout securely with various payment options.
 
 ### Core Endpoints
 
 - **Get All Endpoints**: Retrieve a JSON representation of all available endpoints in the API.
+- get("/api/")
 - **GET All Items**: Retrieves an array of all available items.
 - **Topics**: Access a list of available topics.
 - **Articles**: Retrieve articles using Last In, First Out (LIFO) order, sorted by specified criteria.
@@ -29,6 +55,19 @@ The NC News API is a robust web API designed to manage various aspects of a cont
 - **Vote Management**: Update the vote count for articles.
 - **Comment Deletion**: Delete specific comments.
 
+- get("/api/items/", getAllItems);
+- get("/api/items/:item_id", getItemById);
+- get("/api/items/type/:type", getItemsByType);
+- get("/api/items/style/:style", getItemsByStyle);
+- get("/api/items/size/:size", getItemsBySize);
+- get("/api/items/color1/:color1", getItemsByColor1);
+- get("/api/items/color2/:color2", getItemsByColor2);
+
+- patch("/api/items/:item_id/review_score", patchReviewScore);
+- patch("/api/items/:item_id/quantity", patchQuantity);
+- patch("/api/items/:item_id/likes", patchLikes);
+- patch("/api/items/:item_id/in_basket", patchInBasket);
+
 ## Setup
 
 ### Minimum Versions
@@ -41,7 +80,7 @@ The NC News API is a robust web API designed to manage various aspects of a cont
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/semih-suran/theNews.git
+   git clone https://github.com/semih-suran/jewellery-store-be.git
    ```
 
 2. **Environment Variables**
@@ -87,3 +126,7 @@ The NC News API is a robust web API designed to manage various aspects of a cont
    ```
 
    The API will be accessible locally at the specified port (default: http://localhost:8080).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

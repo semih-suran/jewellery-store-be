@@ -7,4 +7,3 @@ const runSeed = () => {
 };
 
 runSeed();
-

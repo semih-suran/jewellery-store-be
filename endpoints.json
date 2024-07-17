@@ -242,5 +242,309 @@
     "description": "deletes a comment by comment_id",
     "queries": [":comment_id"],
     "exampleResponse": {}
+  },
+
+  "JEWELLERY ENDPOINTS": {
+    "description": " Endpoints for Jewellery Store",
+    "queries": ["JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE"],
+    "exampleResponse": { "JEWELLERY": "STORE" }
+  },
+
+  "GET /api/items/j8": {
+    "description": "Retrieves an item with its ID",
+    "queries": [],
+    "exampleResponse": {
+      "item": {
+        "the_item_id": 8,
+        "item_id": "j8",
+        "name": "Crystal Charm Bracelet",
+        "description": "A stylish silver charm bracelet adorned with sparkling crystals, perfect for any occasion.",
+        "color1": "silver",
+        "color2": "clear",
+        "size": 5,
+        "type": "bracelet",
+        "style": "modern",
+        "price": "13.90",
+        "quantity": 18,
+        "likes": 0,
+        "in_basket": 0,
+        "review_score": "0.00",
+        "comment_count": 0,
+        "images_url": [
+          "https://m.media-amazon.com/images/I/61TXESOwOEL._AC_UY1000_.jpg"
+        ],
+        "created_at": "2024-06-03T11:00:00.000Z",
+        "updated_at": "2024-06-03T11:00:00.000Z"
+      }
+    }
+  },
+  "GET /api/items/": {
+    "description": "Retrieves All Items",
+    "queries": [],
+    "exampleResponse": {
+      "items": [
+        {
+          "the_item_id": 1,
+          "item_id": "j1",
+          "name": "Black Rock Necklace",
+          "description": "This captivating golden necklace, adorned with a cluster of sparkling black rocks, feels like a serendipitous discovery. It could be the missing piece you've been searching for, adding a touch of unexpected brilliance to any outfit.",
+          "color1": "gold",
+          "color2": "black",
+          "size": 6,
+          "type": "necklace",
+          "style": "retro",
+          "price": "14.95",
+          "quantity": 25,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/71Ky9K3c7aL._AC_UY1000_DpWeblab_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        },
+        {
+          "the_item_id": 2,
+          "item_id": "j2",
+          "name": "Elegant Sapphire Earrings",
+          "description": "These elegant golden earrings, adorned with a cluster of sparkling sapphires, feel like a serendipitous discovery, adding a touch of luxury to any ensemble.",
+          "color1": "gold",
+          "color2": "green",
+          "size": 4,
+          "type": "earring",
+          "style": "modern",
+          "price": "11.50",
+          "quantity": 20,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/71JULyzK1kL._AC_UY1000_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        }
+      ]
+    }
+  },
+  "GET /api/items/type/necklace": {
+    "description": "Retrieves items by their type",
+    "queries": ["necklace", "bracelet", "earring", "ring"],
+    "exampleResponse": {
+      "items": [
+        {
+          "the_item_id": 1,
+          "item_id": "j1",
+          "name": "Black Rock Necklace",
+          "description": "This captivating golden necklace, adorned with a cluster of sparkling black rocks, feels like a serendipitous discovery. It could be the missing piece you've been searching for, adding a touch of unexpected brilliance to any outfit.",
+          "color1": "gold",
+          "color2": "black",
+          "size": 6,
+          "type": "necklace",
+          "style": "retro",
+          "price": "14.95",
+          "quantity": 25,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/71Ky9K3c7aL._AC_UY1000_DpWeblab_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        },
+        {
+          "the_item_id": 3,
+          "item_id": "j3",
+          "name": "Opulent Ruby Necklace",
+          "description": "An opulent gold necklace featuring a radiant ruby, perfect for adding a touch of sophistication to any look.",
+          "color1": "gold",
+          "color2": "red",
+          "size": 7,
+          "type": "necklace",
+          "style": "modern",
+          "price": "18.50",
+          "quantity": 22,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/61pFOFv-VDL._AC_SY575_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        }
+      ]
+    }
+  },
+  "GET /api/items/style/bohemian": {
+    "description": "Retrieves items by their style",
+    "queries": ["modern", "retro", "classic", "bohemian"],
+    "exampleResponse": {
+      "items": [
+        {
+          "the_item_id": 24,
+          "item_id": "j24",
+          "name": "Turquoise Drop Earrings",
+          "description": "Chic silver drop earrings featuring vibrant turquoise stones, perfect for a bohemian flair.",
+          "color1": "silver",
+          "color2": "blue",
+          "size": 5,
+          "type": "earring",
+          "style": "bohemian",
+          "price": "12.90",
+          "quantity": 18,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/41NchSaAb0L._AC_SY1000_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        },
+        {
+          "the_item_id": 35,
+          "item_id": "j35",
+          "name": "Turquoise Bracelet",
+          "description": "A charming silver bracelet featuring vibrant turquoise stones, perfect for a bohemian look.",
+          "color1": "silver",
+          "color2": "blue",
+          "size": 5,
+          "type": "bracelet",
+          "style": "bohemian",
+          "price": "16.90",
+          "quantity": 14,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/61CdHb6D4GL._AC_UY1000_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        }
+      ]
+    }
+  },
+  "GET api/items/size/6": {
+    "description": "Retrieves items by their size",
+    "queries": ["3", "4", "5", "6", "7"],
+    "exampleResponse": {
+      "items": [
+        {
+          "the_item_id": 4,
+          "item_id": "j4",
+          "name": "Vintage Pearl Bracelet",
+          "description": "A charming silver bracelet adorned with delicate pearls, evoking a vintage elegance that never goes out of style.",
+          "color1": "silver",
+          "color2": "white",
+          "size": 5,
+          "type": "bracelet",
+          "style": "retro",
+          "price": "13.90",
+          "quantity": 18,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/71gUoPXne1L._AC_UY350_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        },
+        {
+          "the_item_id": 8,
+          "item_id": "j8",
+          "name": "Crystal Charm Bracelet",
+          "description": "A stylish silver charm bracelet adorned with sparkling crystals, perfect for any occasion.",
+          "color1": "silver",
+          "color2": "clear",
+          "size": 5,
+          "type": "bracelet",
+          "style": "modern",
+          "price": "13.90",
+          "quantity": 18,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/61TXESOwOEL._AC_UY1000_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        }
+      ]
+    }
+  },
+  "GET /api/items/color1/gold": {
+    "description": "Retrieves items by their color1",
+    "queries": ["gold", "silver", "rose gold"],
+    "exampleResponse": {
+      "items": [
+        {
+          "the_item_id": 16,
+          "item_id": "j16",
+          "name": "Rose Gold Bangle",
+          "description": "A sophisticated rose gold bangle, perfect for adding a touch of elegance to any ensemble.",
+          "color1": "rose gold",
+          "color2": "pink",
+          "size": 5,
+          "type": "bracelet",
+          "style": "modern",
+          "price": "14.50",
+          "quantity": 19,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/51cjd4W+zJL._AC_UY1000_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        }
+      ]
+    }
+  },
+
+  "PATCH api/items/j16/likes": {
+    "description": "Updates the 'likes' on the selected item_id",
+    "body": {
+      "likes": 9
+    },
+    "exampleResponse": {
+      "item": {
+        "the_item_id": 16,
+        "item_id": "j16",
+        "name": "Rose Gold Bangle",
+        "description": "A sophisticated rose gold bangle, perfect for adding a touch of elegance to any ensemble.",
+        "color1": "rose gold",
+        "color2": "pink",
+        "size": 5,
+        "type": "bracelet",
+        "style": "modern",
+        "price": "14.50",
+        "quantity": 19,
+        "likes": 9,
+        "in_basket": 0,
+        "review_score": "0.00",
+        "comment_count": 0,
+        "images_url": [
+          "https://m.media-amazon.com/images/I/51cjd4W+zJL._AC_UY1000_.jpg"
+        ],
+        "created_at": "2024-06-03T11:00:00.000Z",
+        "updated_at": "2024-07-17T19:29:07.430Z"
+      }
+    }
   }
 }

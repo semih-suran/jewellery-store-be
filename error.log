@@ -1,0 +1,30 @@
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'Socket'\n    |     property 'parser' -> object with constructor 'HTTPParser'\n    --- property 'socket' closes the circle"}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'Socket'\n    |     property 'parser' -> object with constructor 'HTTPParser'\n    --- property 'socket' closes the circle"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"relation \"items\" does not exist"}
+{"level":"error","message":"the_item_id is not defined"}
+{"level":"error","message":"the_item_id is not defined"}
+{"level":"error","message":"the_item_id is not defined"}
+{"level":"error","message":"the_item_id is not defined"}
+{"level":"error","message":"the_item_id is not defined"}
+{"level":"error","message":"Unexpected token '1', \"#\" is not valid JSON"}
+{"level":"error","message":"Unexpected token '1', \"#\" is not valid JSON"}
+{"level":"error","message":"Unexpected token '1', \"#\" is not valid JSON"}
+{"level":"error","message":"Unexpected token '1', \"#\" is not valid JSON"}
+{"level":"error","message":"Unexpected token '1', \"#\" is not valid JSON"}
+{"level":"error","message":"Unexpected token '1', \"#\" is not valid JSON"}
+{"level":"error","message":"Expected property name or '}' in JSON at position 1"}

@@ -1,15 +1,14 @@
 const db = require("../db/connection");
 
-const fetchArticleById = (articleId) => {
+const fetchArticleById = async (articleId) => {
   if (isNaN(articleId)) {
-    return Promise.reject({
+    throw {
       status: 400,
       msg: "Invalid (article_id) Format. Must Be a Number.",
-    });
+    };
   }
-  return db
-    .query(
-      `
+  const result = await db.query(
+    `
     SELECT
       articles.article_id,
       articles.author,
@@ -35,74 +34,68 @@ const fetchArticleById = (articleId) => {
       articles.body,
       articles.votes,
       articles.article_img_url;
-    `,
-      [articleId]
-    )
-    .then((result) => result.rows);
+  `,
+    [articleId]
+  );
+  return result.rows;
 };
 
-const fetchArticlesWithCommentCount = () => {
-  return db
-    .query(
-      `
+const fetchArticlesWithCommentCount = async () => {
+  const result = await db.query(`
     SELECT
-    articles.author,
-    articles.title,
-    articles.article_id,
-    articles.topic,
-    articles.created_at,
-    articles.votes,
-    articles.article_img_url,
-    COUNT(comments.comment_id) AS comment_count
-  FROM
-    articles
-  LEFT JOIN
-    comments ON articles.article_id = comments.article_id
-  GROUP BY
-    articles.author,
-    articles.title,
-    articles.article_id,
-    articles.topic,
-    articles.created_at,
-    articles.votes,
-    articles.article_img_url
-  ORDER BY
-    articles.created_at DESC;
-`
-    )
-    .then((result) => result.rows);
+      articles.author,
+      articles.title,
+      articles.article_id,
+      articles.topic,
+      articles.created_at,
+      articles.votes,
+      articles.article_img_url,
+      COUNT(comments.comment_id) AS comment_count
+    FROM
+      articles
+    LEFT JOIN
+      comments ON articles.article_id = comments.article_id
+    GROUP BY
+      articles.author,
+      articles.title,
+      articles.article_id,
+      articles.topic,
+      articles.created_at,
+      articles.votes,
+      articles.article_img_url
+    ORDER BY
+      articles.created_at DESC;
+  `);
+  return result.rows;
 };
 
-const checkIfArticleExists = (articleId) => {
+const checkIfArticleExists = async (articleId) => {
   if (isNaN(articleId)) {
-    return Promise.reject({
+    throw {
       status: 400,
       msg: "Invalid (article_id) Format. Must Be a Number.",
-    });
+    };
   }
-
-  return db
-    .query("SELECT * FROM articles WHERE article_id = $1", [articleId])
-    .then((result) => result.rows.length > 0);
+  const result = await db.query(
+    "SELECT * FROM articles WHERE article_id = $1",
+    [articleId]
+  );
+  return result.rows.length > 0;
 };
 
-const patchVotes = (articleId, inc_votes) => {
+const patchVotes = async (articleId, inc_votes) => {
   if (isNaN(articleId)) {
-    return Promise.reject({
+    throw {
       status: 400,
       msg: "Invalid (article_id) Format. Must Be a Number.",
-    });
+    };
   }
-
-  return db
-    .query(`ALTER TABLE articles ADD COLUMN IF NOT EXISTS votes INT;`)
-    .then(() => {
-      return db.query(
-        `UPDATE articles SET votes = COALESCE(votes, 0) + $2 WHERE article_id = $1 RETURNING *;`,
-        [articleId, inc_votes]
-      );
-    })
-    .then((result) => result.rows);
+  await db.query(`ALTER TABLE articles ADD COLUMN IF NOT EXISTS votes INT;`);
+  const result = await db.query(
+    `UPDATE articles SET votes = COALESCE(votes, 0) + $2 WHERE article_id = $1 RETURNING *;`,
+    [articleId, inc_votes]
+  );
+  return result.rows;
 };
 
 const fetchArticlesByTopic = async (topic) => {
@@ -112,9 +105,10 @@ const fetchArticlesByTopic = async (topic) => {
   if (topicResult.rows.length === 0) {
     throw { status: 404, msg: "(topic) does not exist." };
   }
-  return db
-    .query(`SELECT * FROM articles WHERE topic = $1`, [topic])
-    .then((result) => result.rows);
+  const result = await db.query(`SELECT * FROM articles WHERE topic = $1`, [
+    topic,
+  ]);
+  return result.rows;
 };
 
 module.exports = {

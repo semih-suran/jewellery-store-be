@@ -6,7 +6,13 @@ const {
   formatComments,
 } = require("./utils");
 
-const seed = async ({ topicData, userData, articleData, commentData }) => {
+const seed = async ({
+  topicData,
+  userData,
+  articleData,
+  commentData,
+  itemData,
+}) => {
   const client = await db.connect();
 
   try {
@@ -16,6 +22,7 @@ const seed = async ({ topicData, userData, articleData, commentData }) => {
     await client.query(`DROP TABLE IF EXISTS articles;`);
     await client.query(`DROP TABLE IF EXISTS users;`);
     await client.query(`DROP TABLE IF EXISTS topics;`);
+    await client.query(`DROP TABLE IF EXISTS items;`);
 
     await client.query(`
       CREATE TABLE topics (
@@ -55,6 +62,30 @@ const seed = async ({ topicData, userData, articleData, commentData }) => {
         votes INT DEFAULT 0,
         created_at TIMESTAMP DEFAULT NOW()
       );
+    `);
+
+    await client.query(`
+      CREATE TABLE items (
+        the_item_id SERIAL PRIMARY KEY,
+        item_id VARCHAR(10) NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        description TEXT,
+        color1 VARCHAR(50),
+        color2 VARCHAR(50),
+        size INT,
+        type VARCHAR(50),
+        style VARCHAR(50),
+        price DECIMAL(10, 2),
+        quantity INT,
+        likes INT DEFAULT 0,
+        in_basket INT DEFAULT 0,
+        review_score DECIMAL(3, 2) DEFAULT 0,
+        comment_count INT DEFAULT 0,
+        images_url VARCHAR[],
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+
     `);
 
     const insertTopicsQueryStr = format(
@@ -106,6 +137,50 @@ const seed = async ({ topicData, userData, articleData, commentData }) => {
       )
     );
     await client.query(insertCommentsQueryStr);
+
+    const insertItemsQueryStr = format(
+      "INSERT INTO items (item_id, name, description, color1, color2, size, type, style, price, quantity, likes, in_basket, review_score, comment_count, images_url, created_at, updated_at) VALUES %L;",
+      itemData.map(
+        ({
+          item_id,
+          name,
+          description,
+          color1,
+          color2,
+          size,
+          type,
+          style,
+          price,
+          quantity,
+          likes,
+          in_basket,
+          review_score,
+          comment_count,
+          images_url,
+          created_at,
+          updated_at,
+        }) => [
+          item_id,
+          name,
+          description,
+          color1,
+          color2,
+          size,
+          type,
+          style,
+          price,
+          quantity,
+          likes,
+          in_basket,
+          review_score,
+          comment_count,
+          `{${images_url.join(",")}}`,
+          created_at,
+          updated_at,
+        ]
+      )
+    );
+    await client.query(insertItemsQueryStr);
 
     await client.query("COMMIT");
   } catch (error) {

@@ -13,19 +13,19 @@ const {
   patchInBasket,
 } = require("../controllers/items.controller");
 
-const router = express.Router();
+const itemsRouter = express.Router();
 
-router.get("/", getAllItems);
-router.get("/:item_id", getItemById);
-router.get("/type/:type", getItemsByType);
-router.get("/style/:style", getItemsByStyle);
-router.get("/size/:size", getItemsBySize);
-router.get("/color1/:color1", getItemsByColor1);
-router.get("/color2/:color2", getItemsByColor2);
+itemsRouter.get("/", getAllItems);
+itemsRouter.get("/:item_id", getItemById);
+itemsRouter.get("/type/:type", getItemsByType);
+itemsRouter.get("/style/:style", getItemsByStyle);
+itemsRouter.get("/size/:size", getItemsBySize);
+itemsRouter.get("/color1/:color1", getItemsByColor1);
+itemsRouter.get("/color2/:color2", getItemsByColor2);
 
-router.patch("/:item_id/review_score", patchReviewScore);
-router.patch("/:item_id/quantity", patchQuantity);
-router.patch("/:item_id/likes", patchLikes);
-router.patch("/:item_id/in_basket", patchInBasket);
+itemsRouter.patch("/:item_id/review_score", patchReviewScore);
+itemsRouter.patch("/:item_id/quantity", patchQuantity);
+itemsRouter.patch("/:item_id/likes", patchLikes);
+itemsRouter.patch("/:item_id/in_basket", patchInBasket);
 
-module.exports = router;
+module.exports = itemsRouter;

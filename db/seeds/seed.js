@@ -7,12 +7,13 @@ const {
 } = require("./utils");
 
 const seed = async ({
-  topicData,
-  userData,
-  articleData,
-  commentData,
-  itemData,
+  topicData = [],
+  userData = [],
+  articleData = [],
+  commentData = [],
+  itemData = [],
 }) => {
+  console.log({ topicData, userData, articleData, commentData, itemData }); // Debug log
   const client = await db.connect();
 
   try {
@@ -85,7 +86,6 @@ const seed = async ({
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
-
     `);
 
     const insertTopicsQueryStr = format(

@@ -1,126 +1,90 @@
 const db = require("../db/connection");
 
-const fetchItemsById = (articleId) => {
-  if (isNaN(articleId)) {
-    return Promise.reject({
-      status: 400,
-      msg: "Invalid (article_id) Format. Must Be a Number.",
-    });
-  }
-  return db
-    .query(
-      `
-    SELECT
-      articles.article_id,
-      articles.author,
-      articles.title,
-      articles.body,
-      articles.topic,
-      articles.created_at,
-      articles.votes,
-      articles.article_img_url,
-      COUNT(comments.comment_id) AS comment_count
-    FROM
-      articles
-    LEFT JOIN
-      comments ON articles.article_id = comments.article_id
-    WHERE
-      articles.article_id = $1
-    GROUP BY
-      articles.author,
-      articles.title,
-      articles.article_id,
-      articles.topic,
-      articles.created_at,
-      articles.body,
-      articles.votes,
-      articles.article_img_url;
-    `,
-      [articleId]
-    )
-    .then((result) => result.rows);
+const fetchItems = async () => {
+  const result = await db.query("SELECT * FROM items;");
+  return result.rows;
 };
 
-const fetchArticlesWithCommentCount = () => {
-  return db
-    .query(
-      `
-    SELECT
-    articles.author,
-    articles.title,
-    articles.article_id,
-    articles.topic,
-    articles.created_at,
-    articles.votes,
-    articles.article_img_url,
-    COUNT(comments.comment_id) AS comment_count
-  FROM
-    articles
-  LEFT JOIN
-    comments ON articles.article_id = comments.article_id
-  GROUP BY
-    articles.author,
-    articles.title,
-    articles.article_id,
-    articles.topic,
-    articles.created_at,
-    articles.votes,
-    articles.article_img_url
-  ORDER BY
-    articles.created_at DESC;
-`
-    )
-    .then((result) => result.rows);
-};
-
-const checkIfArticleExists = (articleId) => {
-  if (isNaN(articleId)) {
-    return Promise.reject({
-      status: 400,
-      msg: "Invalid (article_id) Format. Must Be a Number.",
-    });
-  }
-
-  return db
-    .query("SELECT * FROM articles WHERE article_id = $1", [articleId])
-    .then((result) => result.rows.length > 0);
-};
-
-const patchVotes = (articleId, inc_votes) => {
-  if (isNaN(articleId)) {
-    return Promise.reject({
-      status: 400,
-      msg: "Invalid (article_id) Format. Must Be a Number.",
-    });
-  }
-
-  return db
-    .query(`ALTER TABLE articles ADD COLUMN IF NOT EXISTS votes INT;`)
-    .then(() => {
-      return db.query(
-        `UPDATE articles SET votes = COALESCE(votes, 0) + $2 WHERE article_id = $1 RETURNING *;`,
-        [articleId, inc_votes]
-      );
-    })
-    .then((result) => result.rows);
-};
-
-const fetchArticlesByTopic = async (topic) => {
-  const topicResult = await db.query(`SELECT * FROM topics WHERE slug = $1;`, [
-    topic,
+const fetchItemById = async (item_id) => {
+  const result = await db.query("SELECT * FROM items WHERE item_id = $1;", [
+    item_id,
   ]);
-  if (topicResult.rows.length === 0) {
-    throw { status: 404, msg: "(topic) does not exist." };
-  }
-  return db
-    .query(`SELECT * FROM articles WHERE topic = $1`, [topic])
-    .then((result) => result.rows);
+  return result.rows[0];
+};
+
+const fetchItemsByType = async (type) => {
+  const result = await db.query("SELECT * FROM items WHERE type = $1;", [type]);
+  return result.rows;
+};
+
+const fetchItemsByStyle = async (style) => {
+  const result = await db.query("SELECT * FROM items WHERE style = $1;", [
+    style,
+  ]);
+  return result.rows;
+};
+
+const fetchItemsBySize = async (size) => {
+  const result = await db.query("SELECT * FROM items WHERE size = $1;", [size]);
+  return result.rows;
+};
+
+const fetchItemsByColor1 = async (color1) => {
+  const result = await db.query("SELECT * FROM items WHERE color1 = $1;", [
+    color1,
+  ]);
+  return result.rows;
+};
+
+const fetchItemsByColor2 = async (color2) => {
+  const result = await db.query("SELECT * FROM items WHERE color2 = $1;", [
+    color2,
+  ]);
+  return result.rows;
+};
+
+const updateReviewScore = async (item_id, review_score) => {
+  const result = await db.query(
+    "UPDATE items SET review_score = $2, updated_at = NOW() WHERE item_id = $1 RETURNING *;",
+    [item_id, review_score]
+  );
+  return result.rows[0];
+};
+
+const updateQuantity = async (item_id, quantity) => {
+  const result = await db.query(
+    "UPDATE items SET quantity = $2, updated_at = NOW() WHERE item_id = $1 RETURNING *;",
+    [item_id, quantity]
+  );
+  return result.rows[0];
+};
+
+const updateLikes = async (item_id, likes) => {
+  const result = await db.query(
+    "UPDATE items SET likes = $2, updated_at = NOW() WHERE item_id = $1 RETURNING *;",
+    [item_id, likes]
+  );
+  return result.rows[0];
+};
+
+const updateInBasket = async (item_id, in_basket) => {
+  const result = await db.query(
+    "UPDATE items SET in_basket = $2, updated_at = NOW() WHERE item_id = $1 RETURNING *;",
+    [item_id, in_basket]
+  );
+  return result.rows[0];
 };
 
 module.exports = {
-  fetchItemsleById,
-  fetchArticlesWithCommentCount,
-  patchVotes,
-  checkIfArticleExists,
-  fetchArticlesByTopic,
+  fetchItems,
+  fetchItemById,
+  fetchItemsByType,
+  fetchItemsByStyle,
+  fetchItemsBySize,
+  fetchItemsByColor1,
+  fetchItemsByColor2,
+  updateReviewScore,
+  updateQuantity,
+  updateLikes,
+  updateInBasket,
 };

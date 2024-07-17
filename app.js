@@ -1,33 +1,49 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const winston = require("winston");
 const app = express();
-app.use(express.json());
-app.use(cors());
-const { getAllItems } = require("./controllers/items.controller");
-const { getAllTopics } = require("./controllers/topics.controller");
-const { getAllEndpoints } = require("./controllers/endpoints.controller");
+const itemsRouter = require("./routes/items.router");
+const apiRouter = require("./routes/api");
+const errorHandlers = require("./error-handlers");
 const {
+  getAllTopics,
+  getAllEndpoints,
   getAllArticlesBySortQuery,
   getArticleById,
   getAllArticlesByLifo,
   patchArticleVotes,
   getArticlesByTopicQuery,
-} = require("./controllers/articles.controller");
-const {
   getAllCommentsByLifo,
   getCommentsByArticleIdLifo,
   postCommentToArticle,
   deleteComment,
-} = require("./controllers/comments.controller");
-const {
-  psqlErrorHandler,
-  customErrorHandler,
-  serverErrorHandler,
-} = require("./error-handlers");
-const {
   getAllUsers,
   setUserAsDefault,
-} = require("./controllers/users.controller");
+  getAllItems,
+  getItemsByType,
+} = require("./controllers");
+
+const logger = winston.createLogger({
+  level: "error",
+  format: winston.format.json(),
+  transports: [new winston.transports.File({ filename: "error.log" })],
+});
+
+app.use(express.json());
+app.use(cors());
+app.use("/api/items", itemsRouter);
+app.use("/api", apiRouter);
+
+app.use((err, req, res, next) => {
+  logger.error(err.message);
+  console.error(err);
+  next(err);
+});
+
+app.use(errorHandlers.psqlErrorHandler);
+app.use(errorHandlers.customErrorHandler);
+app.use(errorHandlers.serverErrorHandler);
 
 app.get("/api", getAllEndpoints);
 
@@ -61,8 +77,7 @@ app.delete("/api/comments/:comment_id", deleteComment);
 
 app.get("/api/items", getAllItems);
 
-app.use(psqlErrorHandler);
-app.use(customErrorHandler);
-app.use(serverErrorHandler);
+app.get("/api/items/type/:type", getItemsByType);
+
 
 module.exports = app;

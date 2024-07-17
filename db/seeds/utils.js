@@ -22,4 +22,3 @@ exports.formatComments = (comments, idLookup) => {
     };
   });
 };
-

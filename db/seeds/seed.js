@@ -13,7 +13,6 @@ const seed = async ({
   commentData = [],
   itemData = [],
 }) => {
-  console.log({ topicData, userData, articleData, commentData, itemData }); // Debug log
   const client = await db.connect();
 
   try {

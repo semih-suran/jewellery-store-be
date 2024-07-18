@@ -13,13 +13,23 @@ const {
   deleteComment,
 } = require("./comments.controller");
 
-const { getAllEndpoints } = require("./endpoints.controller");
-
 const {
   getAllItems,
+  getItemById,
   getItemsByType,
+  getItemsByStyle,
+  getItemsBySize,
+  getItemsByColor1,
+  getItemsByColor2,
+  patchReviewScore,
+  patchQuantity,
+  patchLikes,
+  patchInBasket,
   searchItemsByQuery,
-} = require("./items.controller");
+} = require('./items.controller')
+
+const { getAllEndpoints } = require("./endpoints.controller");
+
 
 const { getAllTopics } = require("./topics.controller");
 
@@ -35,10 +45,20 @@ module.exports = {
   getCommentsByArticleIdLifo,
   postCommentToArticle,
   deleteComment,
-  getAllItems,
-  getItemsByType,
   getAllTopics,
   getAllUsers,
   setUserAsDefault,
   getAllEndpoints,
+  getAllItems,
+  getItemById,
+  getItemsByType,
+  getItemsByStyle,
+  getItemsBySize,
+  getItemsByColor1,
+  getItemsByColor2,
+  patchReviewScore,
+  patchQuantity,
+  patchLikes,
+  patchInBasket,
+  searchItemsByQuery,
 };

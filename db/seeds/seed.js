@@ -17,20 +17,24 @@ const seed = async ({
 
   try {
     await client.query("BEGIN");
-
+  
     await client.query(`DROP TABLE IF EXISTS comments;`);
     await client.query(`DROP TABLE IF EXISTS articles;`);
     await client.query(`DROP TABLE IF EXISTS users;`);
     await client.query(`DROP TABLE IF EXISTS topics;`);
     await client.query(`DROP TABLE IF EXISTS items;`);
-
+  
+    console.log("Tables dropped successfully");
+  
     await client.query(`
       CREATE TABLE topics (
         slug VARCHAR PRIMARY KEY,
         description VARCHAR NOT NULL
       );
     `);
-
+  
+    console.log("Topics table created");
+  
     await client.query(`
       CREATE TABLE users (
         username VARCHAR PRIMARY KEY,
@@ -39,7 +43,9 @@ const seed = async ({
         is_default BOOLEAN DEFAULT false NOT NULL
       );
     `);
-
+  
+    console.log("Users table created");
+  
     await client.query(`
       CREATE TABLE articles (
         article_id SERIAL PRIMARY KEY,
@@ -52,7 +58,9 @@ const seed = async ({
         article_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );
     `);
-
+  
+    console.log("Articles table created");
+  
     await client.query(`
       CREATE TABLE comments (
         comment_id SERIAL PRIMARY KEY,
@@ -63,7 +71,9 @@ const seed = async ({
         created_at TIMESTAMP DEFAULT NOW()
       );
     `);
-
+  
+    console.log("Comments table created");
+  
     await client.query(`
       CREATE TABLE items (
         the_item_id SERIAL PRIMARY KEY,
@@ -86,6 +96,8 @@ const seed = async ({
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
+  
+    console.log("Items table created");
 
     const insertTopicsQueryStr = format(
       "INSERT INTO topics (slug, description) VALUES %L;",

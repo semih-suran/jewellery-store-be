@@ -111,6 +111,7 @@ Check out the Endpoints of the Jewellery Store: [Jewellery Store Endpoints](http
    ```bash
    npm run setup-dbs
    npm run seed
+   npm run seed-prod
    ```
 
 5. **Run Tests**

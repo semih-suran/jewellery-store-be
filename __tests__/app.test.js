@@ -122,7 +122,7 @@ describe("GET Tests", () => {
           .get("/api/articles/888")
           .expect(404)
           .then((response) => {
-            expect(response.body.msg).toBe("Non-existent Article ID");
+            expect(response.body.msg).toBe("Article Not Found");
           });
       });
       test("should return a Status Code: 400 if passed (article_id) is not a number", () => {
@@ -149,6 +149,7 @@ describe("GET Tests", () => {
             expect(article).toHaveProperty("created_at");
             expect(article).toHaveProperty("votes");
             expect(article).toHaveProperty("article_img_url");
+            expect(article).toHaveProperty("comment_count");
           });
       });
     });
@@ -508,23 +509,19 @@ describe("PATCH Tests", () => {
           expect(body.user.is_default).toBe(true);
         });
     });
-  
+
     test("should be only one user is set as default at any time", async () => {
-      await supertest(app)
-        .patch(`/api/users/lurker/makeDefault`)
-        .expect(200);
-  
-      await supertest(app)
-        .patch(`/api/users/rogersop/makeDefault`)
-        .expect(200);
-  
+      await supertest(app).patch(`/api/users/lurker/makeDefault`).expect(200);
+
+      await supertest(app).patch(`/api/users/rogersop/makeDefault`).expect(200);
+
       const { body } = await supertest(app).get("/api/users").expect(200);
-      const defaultUsers = body.users.filter(user => user.is_default);
-  
+      const defaultUsers = body.users.filter((user) => user.is_default);
+
       expect(defaultUsers.length).toBe(1);
       expect(defaultUsers[0].username).toBe("rogersop");
     });
-  
+
     test("should return a Status Code: 404 if a non-existent user", () => {
       const nonExistentUsername = "ghostUser";
       return supertest(app)

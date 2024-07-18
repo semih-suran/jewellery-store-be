@@ -16,18 +16,23 @@ const getAllCommentsByLifo = (req, res, next) => {
 };
 
 const getCommentsByArticleIdLifo = async (req, res, next) => {
-  const articleId = req.params.article_id;
+  const articleId = parseInt(req.params.article_id, 10);
+
+  if (isNaN(articleId)) {
+    return res
+      .status(400)
+      .send({ msg: "Invalid (article_id) Format. Must Be a Number." });
+  }
 
   try {
     const articleExists = await checkIfArticleExists(articleId);
 
     if (!articleExists) {
-      throw { status: 404, msg: "Non-existent Article ID" };
+      return res.status(404).send({ msg: "Non-existent Article ID" });
     }
 
     const comments = await fetchCommentsByArticleId(articleId);
-
-    res.send(comments);
+    res.status(200).send(comments);
   } catch (error) {
     next(error);
   }
@@ -75,6 +80,7 @@ const deleteComment = (req, res, next) => {
       next(error);
     });
 };
+
 module.exports = {
   getAllCommentsByLifo,
   getCommentsByArticleIdLifo,

@@ -1,10 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const winston = require("winston");
 const app = express();
-const itemsRouter = require("./routes/items.router");
-const apiRouter = require("./routes/api");
 const errorHandlers = require("./error-handlers");
 const {
   getAllTopics,
@@ -21,34 +18,28 @@ const {
   getAllUsers,
   setUserAsDefault,
   getAllItems,
+  getItemById,
   getItemsByType,
+  getItemsByStyle,
+  getItemsBySize,
+  getItemsByColor1,
+  getItemsByColor2,
+  patchReviewScore,
+  patchQuantity,
+  patchLikes,
+  patchInBasket,
 } = require("./controllers");
-
-const logger = winston.createLogger({
-  level: "error",
-  format: winston.format.json(),
-  transports: [new winston.transports.File({ filename: "error.log" })],
-});
 
 app.use(express.json());
 app.use(cors());
-app.use("/api/items", itemsRouter);
-app.use("/api", apiRouter);
-
-app.use((err, req, res, next) => {
-  logger.error(err.message);
-  console.error(err);
-  next(err);
-});
 
 app.use(errorHandlers.psqlErrorHandler);
 app.use(errorHandlers.customErrorHandler);
 app.use(errorHandlers.serverErrorHandler);
 
+// Articles Routes
 app.get("/api", getAllEndpoints);
-
 app.get("/api/topics", getAllTopics);
-
 app.get("/api/comments", getAllCommentsByLifo);
 
 app.get("/api/articles", (req, res, next) => {
@@ -62,22 +53,26 @@ app.get("/api/articles", (req, res, next) => {
 });
 
 app.get("/api/articles/:article_id", getArticleById);
-
 app.get("/api/articles/:article_id/comments", getCommentsByArticleIdLifo);
-
-app.get("/api/users", getAllUsers);
-
-app.patch("/api/users/:username/makeDefault", setUserAsDefault);
-
 app.post("/api/articles/:article_id/comments", postCommentToArticle);
-
 app.patch("/api/articles/:article_id", patchArticleVotes);
-
 app.delete("/api/comments/:comment_id", deleteComment);
 
+app.get("/api/users", getAllUsers);
+app.patch("/api/users/:username/makeDefault", setUserAsDefault);
+
+// Items Routes
 app.get("/api/items", getAllItems);
-
+app.get("/api/items/:item_id", getItemById);
 app.get("/api/items/type/:type", getItemsByType);
+app.get("/api/items/style/:style", getItemsByStyle);
+app.get("/api/items/size/:size", getItemsBySize);
+app.get("/api/items/color1/:color1", getItemsByColor1);
+app.get("/api/items/color2/:color2", getItemsByColor2);
 
+app.patch("/api/items/:item_id/review_score", patchReviewScore);
+app.patch("/api/items/:item_id/quantity", patchQuantity);
+app.patch("/api/items/:item_id/likes", patchLikes);
+app.patch("/api/items/:item_id/in_basket", patchInBasket);
 
 module.exports = app;

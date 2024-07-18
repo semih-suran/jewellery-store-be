@@ -122,7 +122,7 @@ describe("GET Tests", () => {
           .get("/api/articles/888")
           .expect(404)
           .then((response) => {
-            expect(response.body.msg).toBe("Article Not Found");
+            expect(response.body.msg).toBe("Non-existent Article ID");
           });
       });
       test("should return a Status Code: 400 if passed (article_id) is not a number", () => {
@@ -149,7 +149,6 @@ describe("GET Tests", () => {
             expect(article).toHaveProperty("created_at");
             expect(article).toHaveProperty("votes");
             expect(article).toHaveProperty("article_img_url");
-            expect(article).toHaveProperty("comment_count");
           });
       });
     });

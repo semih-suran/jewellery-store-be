@@ -2,14 +2,7 @@ const db = require("../db/connection");
 
 const fetchAllCommentsByLifo = () => {
   return db
-    .query(
-      `
-      SELECT * FROM
-      comments
-    ORDER BY
-      created_at DESC;
-  `
-    )
+    .query(`SELECT * FROM comments ORDER BY created_at DESC;`)
     .then((result) => result.rows);
 };
 
@@ -20,6 +13,12 @@ const fetchCommentsByArticleId = (articleId) => {
       [articleId]
     )
     .then((result) => result.rows);
+};
+
+const checkIfArticleExists = (articleId) => {
+  return db
+    .query("SELECT * FROM articles WHERE article_id = $1;", [articleId])
+    .then((result) => result.rows.length > 0);
 };
 
 const addCommentToArticle = async (articleId, username, body) => {
@@ -78,5 +77,5 @@ module.exports = {
   addCommentToArticle,
   deleteCommentByCommentId,
   checkIfCommentExists,
+  checkIfArticleExists,
 };
-

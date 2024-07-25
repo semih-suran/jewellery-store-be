@@ -25,11 +25,18 @@ const {
   patchQuantity,
   patchLikes,
   patchInBasket,
-  searchItemsByQuery,
-} = require('./items.controller')
+  searchItems,
+} = require("./items.controller");
+
+const {
+  getAllShoppingUsers,
+  getShoppingUserById,
+  postShoppingUser,
+  patchShoppingUserAddress,
+  patchShoppingUserNickname,
+} = require("./shoppingusers.controller");
 
 const { getAllEndpoints } = require("./endpoints.controller");
-
 
 const { getAllTopics } = require("./topics.controller");
 
@@ -60,5 +67,10 @@ module.exports = {
   patchQuantity,
   patchLikes,
   patchInBasket,
-  searchItemsByQuery,
+  searchItems,
+  getAllShoppingUsers,
+  getShoppingUserById,
+  postShoppingUser,
+  patchShoppingUserAddress,
+  patchShoppingUserNickname,
 };

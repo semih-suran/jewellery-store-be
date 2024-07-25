@@ -62,11 +62,19 @@ Check out the Endpoints of the Jewellery Store: [Jewellery Store Endpoints](http
 - get("/api/items/size/:size", getItemsBySize);
 - get("/api/items/color1/:color1", getItemsByColor1);
 - get("/api/items/color2/:color2", getItemsByColor2);
+- get("/api/shoppingusers", getAllShoppingUsers);
+- get("/api/shoppingusers/:user_id", getShoppingUserById);
 
 - patch("/api/items/:item_id/review_score", patchReviewScore);
 - patch("/api/items/:item_id/quantity", patchQuantity);
 - patch("/api/items/:item_id/likes", patchLikes);
 - patch("/api/items/:item_id/in_basket", patchInBasket);
+- patch("/api/shoppingusers/:user_id/address", patchShoppingUserAddress);
+- patch("/api/shoppingusers/:user_id/nickname", patchShoppingUserNickname);
+
+- post("/api/shoppingusers", postShoppingUser);
+
+
 
 ## Setup
 
@@ -85,7 +93,7 @@ Check out the Endpoints of the Jewellery Store: [Jewellery Store Endpoints](http
 
 2. **Environment Variables**
 
-   Create `.env.development` and `.env.test` files in the root directory and add the necessary environment variables for your development and test databases.
+   Create `.env.development` (PGDATABASE=), `.env.test` (PGDATABASE=) and `.env.production` (DATABASE_URL=) files in the root directory and add the necessary environment variables for your development and test databases.
 
 3. **Install Dependencies**
 

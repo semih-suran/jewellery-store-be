@@ -12,6 +12,8 @@ const {
   updateInBasket,
 } = require("../models/items.model");
 
+const { query } = require("../db/connection");
+
 const getAllItems = (req, res, next) => {
   fetchItems()
     .then((items) => {
@@ -114,16 +116,25 @@ const patchInBasket = (req, res, next) => {
     .catch(next);
 };
 
-// searchItemsByQuery To RELOGIC
-const searchItemsByQuery = (req, res, next) => {
-  const { color1 } = req.params;
-  fetchItemsByColor1(color1)
-    .then((items) => {
-      res.status(200).json(items);
-    })
-    .catch(next);
+const searchItems = async (req, res, next) => {
+  try {
+    const { keyword } = req.query;
+    console.log("Received keyword:", keyword);
+    if (!keyword) {
+      return res
+        .status(400)
+        .send({ msg: "Keyword query parameter is required" });
+    }
+    const {rows} = await query(
+      `SELECT * FROM items WHERE name ILIKE $1 OR description ILIKE $1`,
+      [`%${keyword}%`]
+    );
+    console.log("Query Result:", rows);
+    res.status(200).send(rows);
+  } catch (err) {
+    next(err);
+  }
 };
-// searchItemsByQuery To RELOGIC
 
 module.exports = {
   getAllItems,
@@ -137,5 +148,5 @@ module.exports = {
   patchQuantity,
   patchLikes,
   patchInBasket,
-  searchItemsByQuery,
+  searchItems,
 };

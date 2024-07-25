@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
 const errorHandlers = require("./error-handlers");
 const {
@@ -28,6 +28,12 @@ const {
   patchQuantity,
   patchLikes,
   patchInBasket,
+  searchItems,
+  getAllShoppingUsers,
+  getShoppingUserById,
+  postShoppingUser,
+  patchShoppingUserAddress,
+  patchShoppingUserNickname,
 } = require("./controllers");
 
 app.use(express.json());
@@ -69,6 +75,13 @@ app.get("/api/items/style/:style", getItemsByStyle);
 app.get("/api/items/size/:size", getItemsBySize);
 app.get("/api/items/color1/:color1", getItemsByColor1);
 app.get("/api/items/color2/:color2", getItemsByColor2);
+app.get("/api/search", searchItems);
+
+app.get("/api/shoppingusers", getAllShoppingUsers);
+app.get("/api/shoppingusers/:user_id", getShoppingUserById);
+app.post("/api/shoppingusers", postShoppingUser);
+app.patch("/api/shoppingusers/:user_id/address", patchShoppingUserAddress);
+app.patch("/api/shoppingusers/:user_id/nickname", patchShoppingUserNickname);
 
 app.patch("/api/items/:item_id/review_score", patchReviewScore);
 app.patch("/api/items/:item_id/quantity", patchQuantity);

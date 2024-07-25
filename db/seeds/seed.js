@@ -12,29 +12,33 @@ const seed = async ({
   articleData = [],
   commentData = [],
   itemData = [],
+  shoppingusersData = [],
 }) => {
   const client = await db.connect();
 
   try {
     await client.query("BEGIN");
-  
+
     await client.query(`DROP TABLE IF EXISTS comments;`);
     await client.query(`DROP TABLE IF EXISTS articles;`);
     await client.query(`DROP TABLE IF EXISTS users;`);
     await client.query(`DROP TABLE IF EXISTS topics;`);
     await client.query(`DROP TABLE IF EXISTS items;`);
-  
+    await client.query(
+      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users;`
+    );
+
     console.log("Tables dropped successfully");
-  
+
     await client.query(`
       CREATE TABLE topics (
         slug VARCHAR PRIMARY KEY,
         description VARCHAR NOT NULL
       );
     `);
-  
+
     console.log("Topics table created");
-  
+
     await client.query(`
       CREATE TABLE users (
         username VARCHAR PRIMARY KEY,
@@ -43,9 +47,9 @@ const seed = async ({
         is_default BOOLEAN DEFAULT false NOT NULL
       );
     `);
-  
+
     console.log("Users table created");
-  
+
     await client.query(`
       CREATE TABLE articles (
         article_id SERIAL PRIMARY KEY,
@@ -58,9 +62,9 @@ const seed = async ({
         article_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );
     `);
-  
+
     console.log("Articles table created");
-  
+
     await client.query(`
       CREATE TABLE comments (
         comment_id SERIAL PRIMARY KEY,
@@ -71,9 +75,9 @@ const seed = async ({
         created_at TIMESTAMP DEFAULT NOW()
       );
     `);
-  
+
     console.log("Comments table created");
-  
+
     await client.query(`
       CREATE TABLE items (
         the_item_id SERIAL PRIMARY KEY,
@@ -96,8 +100,28 @@ const seed = async ({
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
-  
+
     console.log("Items table created");
+
+    await client.query(`
+      CREATE TABLE shopping_users (
+        user_id SERIAL PRIMARY KEY,
+        first_name VARCHAR(255) NOT NULL,
+        last_name VARCHAR(255) NOT NULL,
+        nickname VARCHAR(255),
+        email VARCHAR(255) UNIQUE NOT NULL,
+        mobile_phone VARCHAR(15),
+        street VARCHAR(255),
+        city VARCHAR(255),
+        state VARCHAR(255),
+        zipCode VARCHAR(10),
+        country VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    console.log("Shopping users table created");
 
     const insertTopicsQueryStr = format(
       "INSERT INTO topics (slug, description) VALUES %L;",
@@ -192,6 +216,36 @@ const seed = async ({
       )
     );
     await client.query(insertItemsQueryStr);
+
+    const insertShoppingUsersQueryStr = format(
+      "INSERT INTO shopping_users (first_name, last_name, nickname, email, mobile_phone, street, city, state, zipCode, country) VALUES %L;",
+      shoppingusersData.map(
+        ({
+          firstName,
+          lastName,
+          nickname,
+          email,
+          mobilePhone,
+          street,
+          city,
+          state,
+          zipCode,
+          country,
+        }) => [
+          firstName,
+          lastName,
+          nickname,
+          email,
+          mobilePhone,
+          street,
+          city,
+          state,
+          zipCode,
+          country,
+        ]
+      )
+    );
+    await client.query(insertShoppingUsersQueryStr);
 
     await client.query("COMMIT");
   } catch (error) {

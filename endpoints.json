@@ -330,6 +330,58 @@
       ]
     }
   },
+  "GET /api/search": {
+    "description": "Search items by keyword",
+    "queries": ["necklace", "bracelet", "earring", "ring"],
+    "exampleResponse": {
+      "items": [
+        {
+          "the_item_id": 1,
+          "item_id": "j1",
+          "name": "Black Rock Necklace",
+          "description": "This captivating golden necklace, adorned with a cluster of sparkling black rocks, feels like a serendipitous discovery. It could be the missing piece you've been searching for, adding a touch of unexpected brilliance to any outfit.",
+          "color1": "gold",
+          "color2": "black",
+          "size": 6,
+          "type": "necklace",
+          "style": "retro",
+          "price": "14.95",
+          "quantity": 25,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/71Ky9K3c7aL._AC_UY1000_DpWeblab_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        },
+        {
+          "the_item_id": 3,
+          "item_id": "j3",
+          "name": "Opulent Ruby Necklace",
+          "description": "An opulent gold necklace featuring a radiant ruby, perfect for adding a touch of sophistication to any look.",
+          "color1": "gold",
+          "color2": "red",
+          "size": 7,
+          "type": "necklace",
+          "style": "modern",
+          "price": "18.50",
+          "quantity": 22,
+          "likes": 0,
+          "in_basket": 0,
+          "review_score": "0.00",
+          "comment_count": 0,
+          "images_url": [
+            "https://m.media-amazon.com/images/I/61pFOFv-VDL._AC_SY575_.jpg"
+          ],
+          "created_at": "2024-06-03T11:00:00.000Z",
+          "updated_at": "2024-06-03T11:00:00.000Z"
+        }
+      ]
+    }
+  },
   "GET /api/items/type/necklace": {
     "description": "Retrieves items by their type",
     "queries": ["necklace", "bracelet", "earring", "ring"],
@@ -545,6 +597,125 @@
         "created_at": "2024-06-03T11:00:00.000Z",
         "updated_at": "2024-07-17T19:29:07.430Z"
       }
+    }
+  },
+
+  "GET api/shoppingusers": {
+    "description": "Retrieves All Shoppingusers",
+    "body": {},
+    "exampleResponse": {
+      "user_id": 1,
+      "first_name": "Alexander",
+      "last_name": "Harrison",
+      "nickname": "Test_1",
+      "email": "alex.harrison@example.com",
+      "mobile_phone": "+12345678901",
+      "street": "456 Elm St",
+      "city": "Othertown",
+      "state": "IL",
+      "zipcode": "67890",
+      "country": "USA",
+      "created_at": "2024-07-25T10:02:47.075Z",
+      "updated_at": "2024-07-25T10:02:47.075Z"
+    }
+  },
+
+  "GET api/shoppingusers/:user_id": {
+    "description": "Retrieves Shoppingusers by ID",
+    "body": {},
+    "exampleResponse": {
+      "user_id": 1,
+      "first_name": "Alexander",
+      "last_name": "Harrison",
+      "nickname": "Test_1",
+      "email": "alex.harrison@example.com",
+      "mobile_phone": "+12345678901",
+      "street": "456 Elm St",
+      "city": "Othertown",
+      "state": "IL",
+      "zipcode": "67890",
+      "country": "USA",
+      "created_at": "2024-07-25T10:02:47.075Z",
+      "updated_at": "2024-07-25T10:02:47.075Z"
+    }
+  },
+
+  "POST api/shoppingusers": {
+    "description": "Creates a new Shoppinguser",
+    "body":{
+      "firstName": "Avare",
+      "lastName": "Bu",
+      "nickname": "Test_9",
+      "email": "Avare@example.com",
+      "mobilePhone": "+12345678904",
+      "street": "901 Pine St",
+      "city": "Fourthtown",
+      "state": "Lincolnshire",
+      "zipCode": "90124",
+      "country": "UK"
+      },
+    "exampleResponse": {
+      "user_id": 9,
+      "first_name": "Avare",
+      "last_name": "Bu",
+      "nickname": "Test_9",
+      "email": "Avare@example.com",
+      "mobile_phone": "+12345678904",
+      "street": "901 Pine St",
+      "city": "Fourthtown",
+      "state": "Lincolnshire",
+      "zipcode": "90124",
+      "country": "UK",
+      "created_at": "2024-07-25T10:24:29.768Z",
+      "updated_at": "2024-07-25T10:24:29.768Z"
+    }
+  },
+ 
+  "PATCH api/shoppingusers/:user_id/address": {
+    "description": "Updates Shoppinguser's address",
+    "body": {
+      "street": "911 Pine St",
+      "city": "Fourthtown",
+      "state": "Lincolnshire",
+      "zipCode": "PE91ED",
+      "country": "USA"
+      },
+    "exampleResponse": {
+      "user_id": 9,
+      "first_name": "Avare",
+      "last_name": "Bu",
+      "nickname": "Test_9",
+      "email": "Avare@example.com",
+      "mobile_phone": "+12345678904",
+      "street": "911 Pine St",
+      "city": "Fourthtown",
+      "state": "Lincolnshire",
+      "zipcode": "PE91ED",
+      "country": "USA",
+      "created_at": "2024-07-25T10:24:29.768Z",
+      "updated_at": "2024-07-25T10:26:28.717Z"
+    }
+  }, 
+
+"PATCH api/shoppingusers/:user_id/nickname": {
+    "description": "Updates Shoppinguser's nickname",
+    "body": {
+      "nickname": "Test_999"
+      },
+    "exampleResponse": {
+      "user_id": 9,
+      "first_name": "Avare",
+      "last_name": "Bu",
+      "nickname": "Test_999",
+      "email": "Avare@example.com",
+      "mobile_phone": "+12345678904",
+      "street": "911 Pine St",
+      "city": "Fourthtown",
+      "state": "Lincolnshire",
+      "zipcode": "PE91ED",
+      "country": "USA",
+      "created_at": "2024-07-25T10:24:29.768Z",
+      "updated_at": "2024-07-25T10:27:37.784Z"
     }
   }
 }

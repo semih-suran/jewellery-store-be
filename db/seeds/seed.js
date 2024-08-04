@@ -24,8 +24,12 @@ const seed = async ({
     await client.query(`DROP TABLE IF EXISTS users;`);
     await client.query(`DROP TABLE IF EXISTS topics;`);
     await client.query(`DROP TABLE IF EXISTS items;`);
+    await client.query(`DROP TABLE IF EXISTS shopping_users;`);
+    await client.query(`DROP TABLE IF EXISTS favourites;`);
+    await client.query(`DROP TABLE IF EXISTS shopping_bag;`);
+    await client.query(`DROP TABLE IF EXISTS reviews;`);
     await client.query(
-      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users;`
+      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users, favourites, shopping_bag, reviews;`
     );
 
     console.log("Tables dropped successfully");
@@ -122,6 +126,40 @@ const seed = async ({
     `);
 
     console.log("Shopping users table created");
+
+    await client.query(`
+      CREATE TABLE favourites (
+        user_id INT REFERENCES shopping_users(user_id),
+        item_id INT REFERENCES items(the_item_id),
+        PRIMARY KEY (user_id, item_id)
+      );
+    `);
+
+    console.log("Favourites table created");
+
+    await client.query(`
+      CREATE TABLE shopping_bag (
+        user_id INT REFERENCES shopping_users(user_id),
+        item_id INT REFERENCES items(the_item_id),
+        quantity INT NOT NULL,
+        PRIMARY KEY (user_id, item_id)
+      );
+    `);
+
+    console.log("Shopping bag table created");
+
+    await client.query(`
+      CREATE TABLE reviews (
+        user_id INT REFERENCES shopping_users(user_id),
+        item_id INT REFERENCES items(the_item_id),
+        rating INT CHECK (rating >= 1 AND rating <= 5),
+        review TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (user_id, item_id)
+      );
+    `);
+
+    console.log("Reviews table created");
 
     const insertTopicsQueryStr = format(
       "INSERT INTO topics (slug, description) VALUES %L;",
@@ -246,6 +284,45 @@ const seed = async ({
       )
     );
     await client.query(insertShoppingUsersQueryStr);
+
+    const insertFavouritesQueryStr = `
+      INSERT INTO favourites (user_id, item_id) VALUES
+      (1, 1), (1, 2), (1, 3),
+      (2, 4), (2, 5), (2, 6),
+      (3, 7), (3, 8), (3, 9),
+      (4, 10), (4, 11), (4, 12),
+      (5, 13), (5, 14), (5, 15),
+      (6, 16), (6, 17), (6, 18),
+      (7, 19), (7, 20), (7, 21),
+      (8, 22), (8, 23), (8, 24);
+    `;
+    await client.query(insertFavouritesQueryStr);
+
+    const insertShoppingBagQueryStr = `
+      INSERT INTO shopping_bag (user_id, item_id, quantity) VALUES
+      (1, 1, 2), (1, 2, 1), (1, 3, 3),
+      (2, 4, 1), (2, 5, 2), (2, 6, 1),
+      (3, 7, 3), (3, 8, 1), (3, 9, 2),
+      (4, 10, 1), (4, 11, 3), (4, 12, 2),
+      (5, 13, 1), (5, 14, 1), (5, 15, 3),
+      (6, 16, 2), (6, 17, 1), (6, 18, 3),
+      (7, 19, 1), (7, 20, 2), (7, 21, 3),
+      (8, 22, 1), (8, 23, 3), (8, 24, 2);
+    `;
+    await client.query(insertShoppingBagQueryStr);
+
+    const insertReviewsQueryStr = `
+      INSERT INTO reviews (user_id, item_id, rating, review) VALUES
+      (1, 1, 5, 'Outstanding quality!'), (1, 2, 4, 'Very good'), (1, 3, 3, 'Average'),
+      (2, 4, 2, 'Not what I expected'), (2, 5, 5, 'Love it!'), (2, 6, 4, 'Pretty good'),
+      (3, 7, 3, 'Just okay'), (3, 8, 5, 'Highly recommend'), (3, 9, 2, 'Not great'),
+      (4, 10, 4, 'Good product'), (4, 11, 3, 'Fair'), (4, 12, 5, 'Excellent!'),
+      (5, 13, 4, 'Very nice'), (5, 14, 2, 'Could be better'), (5, 15, 5, 'Perfect!'),
+      (6, 16, 4, 'Really good'), (6, 17, 3, 'Okay product'), (6, 18, 5, 'Love it'),
+      (7, 19, 5, 'Awesome'), (7, 20, 2, 'Not impressed'), (7, 21, 4, 'Good purchase'),
+      (8, 22, 5, 'Amazing'), (8, 23, 4, 'Very good'), (8, 24, 3, 'Just okay');
+    `;
+    await client.query(insertReviewsQueryStr);
 
     await client.query("COMMIT");
   } catch (error) {

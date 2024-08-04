@@ -13,12 +13,12 @@ module.exports = [
     quantity: 25,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 1.88,
     comment_count: 0,
     images_url: [
-      "https://m.media-amazon.com/images/I/71pNgGEejxL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71lbk1KoTgL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61Ua6xEIqtL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/618HG2rO42L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61ayWx1egYL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/81i40e+RGML._AC_SX679_.jpg",
     ],
     created_at: "2024-06-03T12:00:00Z",
     updated_at: "2024-06-03T12:00:00Z",
@@ -61,7 +61,7 @@ module.exports = [
     quantity: 22,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4.99,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61iU7xV2HVL._SL1500_.jpg",
@@ -109,7 +109,7 @@ module.exports = [
     quantity: 24,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4.11,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61PEux6yBPL._AC_SY575_.jpg",
@@ -133,7 +133,7 @@ module.exports = [
     quantity: 19,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3.66,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/71XADHNoCUL._AC_SX679_.jpg",
@@ -157,7 +157,7 @@ module.exports = [
     quantity: 26,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2.99,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/51ywPpSJCFL._AC_SY695_.jpg",
@@ -181,7 +181,7 @@ module.exports = [
     quantity: 18,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3.55,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61U3N5qumNL._AC_SY575_.jpg",
@@ -205,7 +205,7 @@ module.exports = [
     quantity: 20,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2.11,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/51DRZ1BTLwL._SL1500_.jpg",
@@ -229,12 +229,12 @@ module.exports = [
     quantity: 22,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 5,
     comment_count: 0,
     images_url: [
-      "https://m.media-amazon.com/images/I/71Z2Gc1GBvL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71w2WkkAkpL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/712benb3EdL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61eEFykEsaL._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/61kQEklyp4L._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71P5HgyjorL._SL1500_.jpg",
     ],
     created_at: "2024-06-03T12:00:00Z",
     updated_at: "2024-06-03T12:00:00Z",
@@ -253,7 +253,7 @@ module.exports = [
     quantity: 15,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 5,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61z4WPApthL._AC_SX679_.jpg",
@@ -277,7 +277,7 @@ module.exports = [
     quantity: 18,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/510K265lFlL._AC_SX679_.jpg",
@@ -301,7 +301,7 @@ module.exports = [
     quantity: 20,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61Nh82iCr-L._AC_SX679_.jpg",
@@ -325,7 +325,7 @@ module.exports = [
     quantity: 21,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61iDLdntA3L._AC_SX679_.jpg",
@@ -349,7 +349,7 @@ module.exports = [
     quantity: 17,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/71nHf17yDuL._AC_SX679_.jpg",
@@ -373,7 +373,7 @@ module.exports = [
     quantity: 19,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61zWFQpgM3L._AC_SX679_.jpg",
@@ -397,7 +397,7 @@ module.exports = [
     quantity: 16,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 1,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61snyr96dYL._AC_UY1000_.jpg",
@@ -419,7 +419,7 @@ module.exports = [
     quantity: 18,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61eMX76eEtL._AC_UY1000_.jpg",
@@ -441,7 +441,7 @@ module.exports = [
     quantity: 17,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/81VPLlav+dL._AC_UY1000_.jpg",
@@ -463,7 +463,7 @@ module.exports = [
     quantity: 20,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 5,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61tjosp1mIL._AC_UY1000_.jpg",
@@ -485,7 +485,7 @@ module.exports = [
     quantity: 19,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 1,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61O73WOFw4S._AC_UY1000_.jpg",
@@ -507,7 +507,7 @@ module.exports = [
     quantity: 20,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 5,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61DJ-XuqkaL._AC_UY1000_.jpg",
@@ -529,7 +529,7 @@ module.exports = [
     quantity: 14,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61j9adJ+RnL._AC_UY1100_.jpg",
@@ -551,7 +551,7 @@ module.exports = [
     quantity: 18,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/41NchSaAb0L._AC_SY1000_.jpg",
@@ -573,7 +573,7 @@ module.exports = [
     quantity: 15,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61uiMx8+rlL._AC_UY1000_.jpg",
@@ -595,7 +595,7 @@ module.exports = [
     quantity: 17,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/51zGc-qdXuL._AC_UY1000_.jpg",
@@ -617,7 +617,7 @@ module.exports = [
     quantity: 16,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3.33,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/81nK+WEVsjL._AC_UY1000_.jpg",
@@ -639,7 +639,7 @@ module.exports = [
     quantity: 14,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4.99,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61L1eYGc-lL._AC_SL1000_.jpg",
@@ -661,7 +661,7 @@ module.exports = [
     quantity: 12,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2.22,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/51S8FJvP6WL._AC_SY500_.jpg",
@@ -683,7 +683,7 @@ module.exports = [
     quantity: 18,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 1.11,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61C1Uo56WUL._AC_SY575_.jpg",
@@ -705,10 +705,10 @@ module.exports = [
     quantity: 13,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2.22,
     comment_count: 0,
     images_url: [
-      "https://c.ndtvimg.com/2022-09/r9saa6k_jewellery-650_625x300_26_September_22.jpg",
+      "https://m.media-amazon.com/images/I/71eih4qXtCL._SL1500_.jpg",
     ],
     created_at: "2024-06-03T12:00:00Z",
     updated_at: "2024-06-03T12:00:00Z",
@@ -727,7 +727,7 @@ module.exports = [
     quantity: 15,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3.33,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61cL61MfJFL._AC_UY1000_.jpg",
@@ -749,7 +749,7 @@ module.exports = [
     quantity: 16,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/81Z2rmPThwL._AC_SY695_.jpg",
@@ -771,7 +771,7 @@ module.exports = [
     quantity: 17,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4.44,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/614LYmKhmNL._AC_UY1000_.jpg",
@@ -793,7 +793,7 @@ module.exports = [
     quantity: 14,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 5,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61CdHb6D4GL._AC_UY1000_.jpg",
@@ -815,7 +815,7 @@ module.exports = [
     quantity: 11,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61ILFcSJNCL._AC_UY1100_.jpg",
@@ -837,7 +837,7 @@ module.exports = [
     quantity: 17,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4.44,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61WLQgfKWDL._AC_SL1500_.jpg",
@@ -859,7 +859,7 @@ module.exports = [
     quantity: 12,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2.22,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61z-1T3rZiL._AC_UY1000_.jpg",
@@ -881,7 +881,7 @@ module.exports = [
     quantity: 16,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/41ITSlktv-L._AC_SY1000_.jpg",
@@ -903,7 +903,7 @@ module.exports = [
     quantity: 15,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 1,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/51El10qUDJL._AC_UY1000_.jpg",
@@ -925,7 +925,7 @@ module.exports = [
     quantity: 13,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3.55,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/715E4pNZGzL._AC_UY1000_.jpg",
@@ -947,7 +947,7 @@ module.exports = [
     quantity: 10,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 4.55,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/7159R90NMmL._AC_UY1000_.jpg",
@@ -969,7 +969,7 @@ module.exports = [
     quantity: 18,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3.66,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61+qJyaPj-L._AC_SX679_.jpg",
@@ -991,7 +991,7 @@ module.exports = [
     quantity: 9,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2.77,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61yeHFkZIBL._AC_UY1000_.jpg",
@@ -1013,7 +1013,7 @@ module.exports = [
     quantity: 14,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 1.88,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/51bBQEyBG0L._AC_UY1000_.jpg",
@@ -1035,7 +1035,7 @@ module.exports = [
     quantity: 12,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 1.99,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/61NSF81HcUL._AC_UY1000_.jpg",
@@ -1057,7 +1057,7 @@ module.exports = [
     quantity: 11,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 2.88,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/71py6zu0MkL._AC_UY1000_.jpg",
@@ -1075,11 +1075,11 @@ module.exports = [
     size: 5,
     type: "necklace",
     style: "modern",
-    price: 20.0,
+    price: 0.50,
     quantity: 10,
     likes: 0,
     in_basket: 0,
-    review_score: 0,
+    review_score: 3.33,
     comment_count: 0,
     images_url: [
       "https://m.media-amazon.com/images/I/6124kYqFc1L._AC_UY1000_.jpg",

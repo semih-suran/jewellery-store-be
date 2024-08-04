@@ -699,6 +699,7 @@
 
 "PATCH api/shoppingusers/:user_id/nickname": {
     "description": "Updates Shoppinguser's nickname",
+    "queries": [":user_id"],
     "body": {
       "nickname": "Test_999"
       },
@@ -716,6 +717,97 @@
       "country": "USA",
       "created_at": "2024-07-25T10:24:29.768Z",
       "updated_at": "2024-07-25T10:27:37.784Z"
+    }
+  },
+
+  "GET /api/shoppingbag/:user_id": {
+    "description": "Retrieves Shoppingusers ShoppingBag Item List",
+    "queries": [":user_id"],
+    "body": {},
+    "exampleResponse": {
+      "items": [
+        {
+          "user_id": 4,
+          "item_id": 10,
+          "quantity": 1
+        },
+        {
+          "user_id": 4,
+          "item_id": 11,
+          "quantity": 3
+        },
+        {
+          "user_id": 4,
+          "item_id": 12,
+          "quantity": 2
+        },
+        {
+          "user_id": 4,
+          "item_id": 44,
+          "quantity": 4
+        }
+      ]
+    }
+  },
+
+  "POST /api/shoppingbag": {
+    "description": "Adds a new Item to Shoppingusers ShoppingBag",
+    "queries": [],
+    "body": {
+      "user_id": 4,
+      "item_id": 40,
+      "quantity": 2
+    },
+    "exampleResponse": {
+      "item": {
+        "user_id": 4,
+        "item_id": 40,
+        "quantity": 2
+      }
+    }
+  },
+
+  "DELETE /api/shoppingbag/:user_id/:item_id": {
+    "description": "Deletes an Item from Shoppingusers ShoppingBag",
+    "queries": [":user_id/:item_id"],
+    "body": {},
+    "exampleResponse": {}
+  },
+
+  "GET /api/reviews/:item_id": {
+    "description": "Retrieves all rewiews about an Item.",
+    "queries": [":item_id"],
+    "body": {},
+    "exampleResponse": {
+      "reviews": [
+        {
+          "user_id": 2,
+          "item_id": 5,
+          "rating": 5,
+          "review": "Love it!",
+          "created_at": "2024-08-04T20:30:46.815Z"
+        }
+      ]
+    }
+  },
+
+  "POST /api/reviews": {
+    "description": "Adds a new Review to an Item",
+    "queries": [],
+    "body": {
+      "user_id": 8,
+      "item_id": 8,
+      "rating": 5,
+      "review": "Very Pretty!"
+    },
+    "exampleResponse": {
+      "review": {
+        "user_id": 8,
+        "item_id": 8,
+        "rating": 5,
+        "review": "Very Pretty!",
+        "created_at": "2024-08-04T20:33:13.337Z"
+      }
     }
   }
 }

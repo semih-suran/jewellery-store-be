@@ -111,20 +111,20 @@ const seed = async ({
 
     await client.query(`
       CREATE TABLE shopping_users (
-        user_id SERIAL PRIMARY KEY,
-        first_name VARCHAR(255) NOT NULL,
-        last_name VARCHAR(255) NOT NULL,
-        nickname VARCHAR(255),
-        email VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(15),
-        mobile_phone VARCHAR(15),
-        street VARCHAR(255),
-        city VARCHAR(255),
-        state VARCHAR(255),
-        zipCode VARCHAR(10),
-        country VARCHAR(255),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          user_id SERIAL PRIMARY KEY,
+          first_name VARCHAR(50) NOT NULL,
+          last_name VARCHAR(50) NOT NULL,
+          nickname VARCHAR(50) NOT NULL,
+          email VARCHAR(100) NOT NULL UNIQUE,
+          password VARCHAR(255) NOT NULL,
+          mobile_phone VARCHAR(20),
+          street VARCHAR(255),
+          city VARCHAR(100),
+          state VARCHAR(100),
+          zipcode VARCHAR(20),
+          country VARCHAR(100),
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
 

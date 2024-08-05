@@ -3,48 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const errorHandlers = require("./error-handlers");
-const {
-  getAllTopics,
-  getAllEndpoints,
-  getAllArticlesBySortQuery,
-  getArticleById,
-  getAllArticlesByLifo,
-  patchArticleVotes,
-  getArticlesByTopicQuery,
-  getAllCommentsByLifo,
-  getCommentsByArticleIdLifo,
-  postCommentToArticle,
-  deleteComment,
-  getAllUsers,
-  setUserAsDefault,
-  getAllItems,
-  getItemById,
-  getItemsByType,
-  getItemsByStyle,
-  getItemsBySize,
-  getItemsByColor1,
-  getItemsByColor2,
-  patchReviewScore,
-  patchQuantity,
-  patchLikes,
-  patchInBasket,
-  searchItems,
-  getAllShoppingUsers,
-  getShoppingUserById,
-  postShoppingUser,
-  patchShoppingUserAddress,
-  patchShoppingUserNickname,
-  postPaymentIntent,
-  getShoppingBagHandler,
-  addShoppingBagItemHandler,
-  removeShoppingBagItemHandler,
-  getFavouritesHandler,
-  addFavouriteHandler,
-  removeFavouriteHandler,
-  getReviewsHandler,
-  postReviewHandler,
-  deleteReviewHandler,
-} = require("./controllers");
+const controllers = require("./controllers");
 
 app.use(express.json());
 app.use(cors());
@@ -54,62 +13,83 @@ app.use(errorHandlers.customErrorHandler);
 app.use(errorHandlers.serverErrorHandler);
 
 // NC News Articles Routes
-app.get("/api", getAllEndpoints);
-app.get("/api/topics", getAllTopics);
-app.get("/api/comments", getAllCommentsByLifo);
+app.get("/api", controllers.getAllEndpoints);
+app.get("/api/topics", controllers.getAllTopics);
+app.get("/api/comments", controllers.getAllCommentsByLifo);
 app.get("/api/articles", (req, res, next) => {
   if (req.query.topic) {
-    return getArticlesByTopicQuery(req, res, next);
+    return controllers.getArticlesByTopicQuery(req, res, next);
   } else if (Object.keys(req.query).length > 0) {
-    return getAllArticlesBySortQuery(req, res, next);
+    return controllers.getAllArticlesBySortQuery(req, res, next);
   } else {
-    return getAllArticlesByLifo(req, res, next);
+    return controllers.getAllArticlesByLifo(req, res, next);
   }
 });
 
-app.get("/api/articles/:article_id", getArticleById);
-app.get("/api/articles/:article_id/comments", getCommentsByArticleIdLifo);
-app.post("/api/articles/:article_id/comments", postCommentToArticle);
-app.patch("/api/articles/:article_id", patchArticleVotes);
-app.delete("/api/comments/:comment_id", deleteComment);
-app.get("/api/users", getAllUsers);
-app.patch("/api/users/:username/makeDefault", setUserAsDefault);
+app.get("/api/articles/:article_id", controllers.getArticleById);
+app.get(
+  "/api/articles/:article_id/comments",
+  controllers.getCommentsByArticleIdLifo
+);
+app.post(
+  "/api/articles/:article_id/comments",
+  controllers.postCommentToArticle
+);
+app.patch("/api/articles/:article_id", controllers.patchArticleVotes);
+app.delete("/api/comments/:comment_id", controllers.deleteComment);
+app.get("/api/users", controllers.getAllUsers);
+app.patch("/api/users/:username/makeDefault", controllers.setUserAsDefault);
 
 // Jewellery Shop Routes
-app.get("/api/items", getAllItems);
-app.get("/api/items/:item_id", getItemById);
-app.get("/api/items/type/:type", getItemsByType);
-app.get("/api/items/style/:style", getItemsByStyle);
-app.get("/api/items/size/:size", getItemsBySize);
-app.get("/api/items/color1/:color1", getItemsByColor1);
-app.get("/api/items/color2/:color2", getItemsByColor2);
-app.get("/api/search", searchItems);
-app.get("/api/shoppingusers", getAllShoppingUsers);
-app.get("/api/shoppingusers/:user_id", getShoppingUserById);
+app.get("/api/items", controllers.getAllItems);
+app.get("/api/items/:item_id", controllers.getItemById);
+app.get("/api/items/type/:type", controllers.getItemsByType);
+app.get("/api/items/style/:style", controllers.getItemsByStyle);
+app.get("/api/items/size/:size", controllers.getItemsBySize);
+app.get("/api/items/color1/:color1", controllers.getItemsByColor1);
+app.get("/api/items/color2/:color2", controllers.getItemsByColor2);
+app.get("/api/search", controllers.searchItems);
+app.get("/api/shoppingusers", controllers.getAllShoppingUsers);
+app.get("/api/shoppingusers/:user_id", controllers.getShoppingUserById);
 
-app.patch("/api/shoppingusers/:user_id/address", patchShoppingUserAddress);
-app.patch("/api/shoppingusers/:user_id/nickname", patchShoppingUserNickname);
-app.patch("/api/items/:item_id/review_score", patchReviewScore);
-app.patch("/api/items/:item_id/quantity", patchQuantity);
-app.patch("/api/items/:item_id/likes", patchLikes);
-app.patch("/api/items/:item_id/in_basket", patchInBasket);
+app.patch(
+  "/api/shoppingusers/:user_id/address",
+  controllers.patchShoppingUserAddress
+);
+app.patch(
+  "/api/shoppingusers/:user_id/nickname",
+  controllers.patchShoppingUserNickname
+);
+app.patch("/api/items/:item_id/review_score", controllers.patchReviewScore);
+app.patch("/api/items/:item_id/quantity", controllers.patchQuantity);
+app.patch("/api/items/:item_id/likes", controllers.patchLikes);
+app.patch("/api/items/:item_id/in_basket", controllers.patchInBasket);
 
-app.post("/api/shoppingusers", postShoppingUser);
-app.post("/create-payment-intent", postPaymentIntent);
+app.post("/api/shoppingusers", controllers.postShoppingUser);
+app.post("/create-payment-intent", controllers.postPaymentIntent);
 
 // Shopping Bag Routes
-app.get("/api/shoppingbag/:user_id", getShoppingBagHandler);
-app.post("/api/shoppingbag", addShoppingBagItemHandler);
-app.delete("/api/shoppingbag/:user_id/:item_id", removeShoppingBagItemHandler);
+app.get("/api/shoppingbag/:user_id", controllers.getShoppingBagHandler);
+app.post("/api/shoppingbag", controllers.addShoppingBagItemHandler);
+app.delete(
+  "/api/shoppingbag/:user_id/:item_id",
+  controllers.removeShoppingBagItemHandler
+);
 
 // Favourites Routes
-app.get("/api/shoppingfavourites/:user_id", getFavouritesHandler);
-app.post("/api/shoppingfavourites", addFavouriteHandler);
-app.delete("/api/shoppingfavourites/:user_id/:item_id", removeFavouriteHandler);
+app.get("/api/shoppingfavourites/:user_id", controllers.getFavouritesHandler);
+app.post("/api/shoppingfavourites", controllers.addFavouriteHandler);
+app.delete(
+  "/api/shoppingfavourites/:user_id/:item_id",
+  controllers.removeFavouriteHandler
+);
 
 // Reviews Routes
-app.get("/api/shoppingreviews/:item_id", getReviewsHandler);
-app.post("/api/shoppingreviews", postReviewHandler);
-app.delete("/api/shoppingreviews/:review_id", deleteReviewHandler);
+app.get("/api/shoppingreviews/:item_id", controllers.getReviewsHandler);
+app.post("/api/shoppingreviews", controllers.postReviewHandler);
+app.delete("/api/shoppingreviews/:review_id", controllers.deleteReviewHandler);
+
+// Register Route
+app.post("/api/register", controllers.registerUser);
 
 module.exports = app;

@@ -53,11 +53,10 @@ app.use(errorHandlers.psqlErrorHandler);
 app.use(errorHandlers.customErrorHandler);
 app.use(errorHandlers.serverErrorHandler);
 
-// Articles Routes
+// NC News Articles Routes
 app.get("/api", getAllEndpoints);
 app.get("/api/topics", getAllTopics);
 app.get("/api/comments", getAllCommentsByLifo);
-
 app.get("/api/articles", (req, res, next) => {
   if (req.query.topic) {
     return getArticlesByTopicQuery(req, res, next);
@@ -73,11 +72,10 @@ app.get("/api/articles/:article_id/comments", getCommentsByArticleIdLifo);
 app.post("/api/articles/:article_id/comments", postCommentToArticle);
 app.patch("/api/articles/:article_id", patchArticleVotes);
 app.delete("/api/comments/:comment_id", deleteComment);
-
 app.get("/api/users", getAllUsers);
 app.patch("/api/users/:username/makeDefault", setUserAsDefault);
 
-// Items Routes
+// Jewellery Shop Routes
 app.get("/api/items", getAllItems);
 app.get("/api/items/:item_id", getItemById);
 app.get("/api/items/type/:type", getItemsByType);
@@ -105,13 +103,13 @@ app.post("/api/shoppingbag", addShoppingBagItemHandler);
 app.delete("/api/shoppingbag/:user_id/:item_id", removeShoppingBagItemHandler);
 
 // Favourites Routes
-app.get("/api/favourites/:user_id", getFavouritesHandler);
-app.post("/api/favourites", addFavouriteHandler);
-app.delete("/api/favourites/:user_id/:item_id", removeFavouriteHandler);
+app.get("/api/shoppingfavourites/:user_id", getFavouritesHandler);
+app.post("/api/shoppingfavourites", addFavouriteHandler);
+app.delete("/api/shoppingfavourites/:user_id/:item_id", removeFavouriteHandler);
 
 // Reviews Routes
-app.get("/api/reviews/:item_id", getReviewsHandler);
-app.post("/api/reviews", postReviewHandler);
-app.delete("/api/reviews/:review_id", deleteReviewHandler);
+app.get("/api/shoppingreviews/:item_id", getReviewsHandler);
+app.post("/api/shoppingreviews", postReviewHandler);
+app.delete("/api/shoppingreviews/:review_id", deleteReviewHandler);
 
 module.exports = app;

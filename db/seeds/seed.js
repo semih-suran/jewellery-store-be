@@ -25,11 +25,11 @@ const seed = async ({
     await client.query(`DROP TABLE IF EXISTS topics;`);
     await client.query(`DROP TABLE IF EXISTS items;`);
     await client.query(`DROP TABLE IF EXISTS shopping_users;`);
-    await client.query(`DROP TABLE IF EXISTS favourites;`);
+    await client.query(`DROP TABLE IF EXISTS shopping_favourites;`);
     await client.query(`DROP TABLE IF EXISTS shopping_bag;`);
-    await client.query(`DROP TABLE IF EXISTS reviews;`);
+    await client.query(`DROP TABLE IF EXISTS shopping_reviews;`);
     await client.query(
-      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users, favourites, shopping_bag, reviews;`
+      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users, shopping_favourites, shopping_bag, shopping_reviews;`
     );
 
     console.log("Tables dropped successfully");
@@ -114,6 +114,7 @@ const seed = async ({
         last_name VARCHAR(255) NOT NULL,
         nickname VARCHAR(255),
         email VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(15),
         mobile_phone VARCHAR(15),
         street VARCHAR(255),
         city VARCHAR(255),
@@ -128,7 +129,7 @@ const seed = async ({
     console.log("Shopping users table created");
 
     await client.query(`
-      CREATE TABLE favourites (
+      CREATE TABLE shopping_favourites (
         user_id INT REFERENCES shopping_users(user_id),
         item_id INT REFERENCES items(the_item_id),
         PRIMARY KEY (user_id, item_id)
@@ -149,13 +150,13 @@ const seed = async ({
     console.log("Shopping bag table created");
 
     await client.query(`
-      CREATE TABLE reviews (
+      CREATE TABLE shopping_reviews (
+        review_id SERIAL PRIMARY KEY,
         user_id INT REFERENCES shopping_users(user_id),
         item_id INT REFERENCES items(the_item_id),
         rating INT CHECK (rating >= 1 AND rating <= 5),
         review TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (user_id, item_id)
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
 
@@ -256,13 +257,14 @@ const seed = async ({
     await client.query(insertItemsQueryStr);
 
     const insertShoppingUsersQueryStr = format(
-      "INSERT INTO shopping_users (first_name, last_name, nickname, email, mobile_phone, street, city, state, zipCode, country) VALUES %L;",
+      "INSERT INTO shopping_users (first_name, last_name, nickname, email, password, mobile_phone, street, city, state, zipCode, country) VALUES %L;",
       shoppingusersData.map(
         ({
           firstName,
           lastName,
           nickname,
           email,
+          password,
           mobilePhone,
           street,
           city,
@@ -274,6 +276,7 @@ const seed = async ({
           lastName,
           nickname,
           email,
+          password,
           mobilePhone,
           street,
           city,
@@ -286,7 +289,7 @@ const seed = async ({
     await client.query(insertShoppingUsersQueryStr);
 
     const insertFavouritesQueryStr = `
-      INSERT INTO favourites (user_id, item_id) VALUES
+      INSERT INTO shopping_favourites (user_id, item_id) VALUES
       (1, 1), (1, 2), (1, 3),
       (2, 4), (2, 5), (2, 6),
       (3, 7), (3, 8), (3, 9),
@@ -312,7 +315,7 @@ const seed = async ({
     await client.query(insertShoppingBagQueryStr);
 
     const insertReviewsQueryStr = `
-      INSERT INTO reviews (user_id, item_id, rating, review) VALUES
+      INSERT INTO shopping_reviews (user_id, item_id, rating, review) VALUES
       (1, 1, 5, 'Outstanding quality!'), (1, 2, 4, 'Very good'), (1, 3, 3, 'Average'),
       (2, 4, 2, 'Not what I expected'), (2, 5, 5, 'Love it!'), (2, 6, 4, 'Pretty good'),
       (3, 7, 3, 'Just okay'), (3, 8, 5, 'Highly recommend'), (3, 9, 2, 'Not great'),

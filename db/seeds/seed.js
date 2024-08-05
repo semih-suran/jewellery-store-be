@@ -19,21 +19,23 @@ const seed = async ({
   try {
     await client.query("BEGIN");
 
-    await client.query(`DROP TABLE IF EXISTS comments;`);
-    await client.query(`DROP TABLE IF EXISTS articles;`);
-    await client.query(`DROP TABLE IF EXISTS users;`);
-    await client.query(`DROP TABLE IF EXISTS topics;`);
-    await client.query(`DROP TABLE IF EXISTS items;`);
-    await client.query(`DROP TABLE IF EXISTS shopping_users;`);
-    await client.query(`DROP TABLE IF EXISTS shopping_favourites;`);
-    await client.query(`DROP TABLE IF EXISTS shopping_bag;`);
-    await client.query(`DROP TABLE IF EXISTS shopping_reviews;`);
+    // Drop tables with CASCADE
+    await client.query(`DROP TABLE IF EXISTS comments CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS articles CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS users CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS topics CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS items CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS shopping_users CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS shopping_favourites CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS shopping_bag CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS shopping_reviews CASCADE;`);
     await client.query(
-      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users, shopping_favourites, shopping_bag, shopping_reviews;`
+      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users, shopping_favourites, shopping_bag, shopping_reviews CASCADE;`
     );
 
     console.log("Tables dropped successfully");
 
+    // Create tables
     await client.query(`
       CREATE TABLE topics (
         slug VARCHAR PRIMARY KEY,
@@ -126,7 +128,7 @@ const seed = async ({
       );
     `);
 
-    console.log("Shopping users table created");
+    console.log("shopping_users table created");
 
     await client.query(`
       CREATE TABLE shopping_favourites (
@@ -136,7 +138,7 @@ const seed = async ({
       );
     `);
 
-    console.log("Favourites table created");
+    console.log("shopping_favourites created");
 
     await client.query(`
       CREATE TABLE shopping_bag (
@@ -147,7 +149,7 @@ const seed = async ({
       );
     `);
 
-    console.log("Shopping bag table created");
+    console.log("shopping_bag table created");
 
     await client.query(`
       CREATE TABLE shopping_reviews (
@@ -160,8 +162,9 @@ const seed = async ({
       );
     `);
 
-    console.log("Reviews table created");
+    console.log("shopping_reviews table created");
 
+    // Insert data
     const insertTopicsQueryStr = format(
       "INSERT INTO topics (slug, description) VALUES %L;",
       topicData.map(({ slug, description }) => [slug, description])

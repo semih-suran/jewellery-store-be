@@ -19,6 +19,7 @@ const createShoppingUser = async (user) => {
     lastName,
     nickname,
     email,
+    password,
     mobilePhone,
     street,
     city,
@@ -27,14 +28,15 @@ const createShoppingUser = async (user) => {
     country,
   } = user;
   const result = await db.query(
-    `INSERT INTO shopping_users (first_name, last_name, nickname, email, mobile_phone, street, city, state, zipCode, country)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    `INSERT INTO shopping_users (first_name, last_name, nickname, email, password, mobile_phone, street, city, state, zipCode, country)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
     RETURNING *;`,
     [
       firstName,
       lastName,
       nickname,
       email,
+      password,
       mobilePhone,
       street,
       city,

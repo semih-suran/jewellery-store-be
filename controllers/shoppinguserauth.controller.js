@@ -49,6 +49,7 @@ const loginUser = (req, res, next) => {
           jwtSecret,
           { expiresIn: "1h" }
         );
+        // console.log("JWT_SECRET:", jwtSecret);
 
         res.status(200).json({ message: "Login successful", token });
       });
@@ -61,14 +62,16 @@ const loginUser = (req, res, next) => {
 
 const googleLogin = async (req, res, next) => {
   const { tokenId } = req.body.tokenId;
-
+  // console.log("Received tokenId:", tokenId);
   try {
     const ticket = await client.verifyIdToken({
       idToken: tokenId,
       audience: process.env.REACT_APP_GOOGLE_CLIENT_ID,
     });
+    // console.log("Ticket:", ticket);
 
     const payload = ticket.getPayload();
+    console.log("Payload:", payload);
 
     const {
       given_name: firstName,
@@ -90,9 +93,9 @@ const googleLogin = async (req, res, next) => {
             jwtSecret,
             { expiresIn: "1h" }
           );
-          console.log("Existing user login successful");
+          console.log("Existing user login successful, token:", token);
 
-          res.status(200).json({ message: "Login successful" });
+          res.status(200).json({ message: "Login successful", token });
         } else {
           // Create a new user
           const newUser = {
@@ -100,7 +103,8 @@ const googleLogin = async (req, res, next) => {
             last_name: payload.family_name,
             email: payload.email,
             password: payload.sub,
-            nickname: payload.name || `${firstName} ${lastName}`,
+            nickname:
+              payload.name || `${payload.given_name} ${payload.family_name}`,
           };
 
           createUser(newUser)
@@ -114,11 +118,11 @@ const googleLogin = async (req, res, next) => {
                 jwtSecret,
                 { expiresIn: "1h" }
               );
-              console.log("New user created and logged in");
+              console.log("New user created and logged in, token:", token);
 
               res
                 .status(201)
-                .json({ message: "Registration and login successful"});
+                .json({ message: "Registration and login successful", token });
             })
             .catch(next);
         }

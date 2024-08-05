@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -91,5 +90,11 @@ app.delete("/api/shoppingreviews/:review_id", controllers.deleteReviewHandler);
 
 // Register Route
 app.post("/api/register", controllers.registerUser);
+
+// Login Route
+app.post("/api/login", controllers.loginUser);
+
+// Google Login Route
+app.post("/api/google-login", controllers.googleLogin);
 
 module.exports = app;

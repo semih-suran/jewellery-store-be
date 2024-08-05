@@ -1,4 +1,5 @@
 const db = require("../db/connection");
+const bcrypt = require("bcrypt");
 
 const fetchAllShoppingUsers = async () => {
   const result = await db.query("SELECT * FROM shopping_users;");
@@ -27,6 +28,9 @@ const createShoppingUser = async (user) => {
     zipCode,
     country,
   } = user;
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   const result = await db.query(
     `INSERT INTO shopping_users (first_name, last_name, nickname, email, password, mobile_phone, street, city, state, zipCode, country)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
@@ -36,7 +40,7 @@ const createShoppingUser = async (user) => {
       lastName,
       nickname,
       email,
-      password,
+      hashedPassword,
       mobilePhone,
       street,
       city,

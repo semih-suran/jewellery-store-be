@@ -54,7 +54,11 @@ const {
   removeFavouriteHandler,
 } = require("./shoppingfavourites.controller");
 
-const { registerUser } = require("./shoppinguserauth.controller");
+const {
+  registerUser,
+  loginUser,
+  googleLogin,
+} = require("./shoppinguserauth.controller");
 
 const { getAllEndpoints } = require("./endpoints.controller");
 
@@ -106,4 +110,6 @@ module.exports = {
   addShoppingBagItemHandler,
   removeShoppingBagItemHandler,
   registerUser,
+  loginUser,
+  googleLogin,
 };

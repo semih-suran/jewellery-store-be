@@ -19,7 +19,6 @@ const seed = async ({
   try {
     await client.query("BEGIN");
 
-    // Drop tables with CASCADE
     await client.query(`DROP TABLE IF EXISTS comments CASCADE;`);
     await client.query(`DROP TABLE IF EXISTS articles CASCADE;`);
     await client.query(`DROP TABLE IF EXISTS users CASCADE;`);
@@ -35,7 +34,6 @@ const seed = async ({
 
     console.log("Tables dropped successfully");
 
-    // Create tables
     await client.query(`
       CREATE TABLE topics (
         slug VARCHAR PRIMARY KEY,
@@ -96,7 +94,7 @@ const seed = async ({
         type VARCHAR(50),
         style VARCHAR(50),
         price DECIMAL(10, 2),
-        quantity INT,
+        in_stock INT,
         likes INT DEFAULT 0,
         in_basket INT DEFAULT 0,
         review_score DECIMAL(3, 2) DEFAULT 0,
@@ -117,6 +115,7 @@ const seed = async ({
           nickname VARCHAR(50) NOT NULL,
           email VARCHAR(100) NOT NULL UNIQUE,
           password VARCHAR(255) NOT NULL,
+          picture VARCHAR(255) NOT NULL,
           mobile_phone VARCHAR(20),
           street VARCHAR(255),
           city VARCHAR(100),
@@ -164,7 +163,6 @@ const seed = async ({
 
     console.log("shopping_reviews table created");
 
-    // Insert data
     const insertTopicsQueryStr = format(
       "INSERT INTO topics (slug, description) VALUES %L;",
       topicData.map(({ slug, description }) => [slug, description])
@@ -216,7 +214,7 @@ const seed = async ({
     await client.query(insertCommentsQueryStr);
 
     const insertItemsQueryStr = format(
-      "INSERT INTO items (item_id, name, description, color1, color2, size, type, style, price, quantity, likes, in_basket, review_score, comment_count, images_url, created_at, updated_at) VALUES %L;",
+      "INSERT INTO items (item_id, name, description, color1, color2, size, type, style, price, in_stock, likes, in_basket, review_score, comment_count, images_url, created_at, updated_at) VALUES %L;",
       itemData.map(
         ({
           item_id,
@@ -228,7 +226,7 @@ const seed = async ({
           type,
           style,
           price,
-          quantity,
+          in_stock,
           likes,
           in_basket,
           review_score,
@@ -246,7 +244,7 @@ const seed = async ({
           type,
           style,
           price,
-          quantity,
+          in_stock,
           likes,
           in_basket,
           review_score,
@@ -260,7 +258,7 @@ const seed = async ({
     await client.query(insertItemsQueryStr);
 
     const insertShoppingUsersQueryStr = format(
-      "INSERT INTO shopping_users (first_name, last_name, nickname, email, password, mobile_phone, street, city, state, zipCode, country) VALUES %L;",
+      "INSERT INTO shopping_users (first_name, last_name, nickname, email, password, picture, mobile_phone, street, city, state, zipCode, country) VALUES %L;",
       shoppingusersData.map(
         ({
           firstName,
@@ -268,6 +266,7 @@ const seed = async ({
           nickname,
           email,
           password,
+          picture,
           mobilePhone,
           street,
           city,
@@ -280,6 +279,7 @@ const seed = async ({
           nickname,
           email,
           password,
+          picture,
           mobilePhone,
           street,
           city,
@@ -305,16 +305,18 @@ const seed = async ({
     await client.query(insertFavouritesQueryStr);
 
     const insertShoppingBagQueryStr = `
-      INSERT INTO shopping_bag (user_id, item_id, quantity) VALUES
-      (1, 1, 2), (1, 2, 1), (1, 3, 3),
-      (2, 4, 1), (2, 5, 2), (2, 6, 1),
-      (3, 7, 3), (3, 8, 1), (3, 9, 2),
-      (4, 10, 1), (4, 11, 3), (4, 12, 2),
-      (5, 13, 1), (5, 14, 1), (5, 15, 3),
-      (6, 16, 2), (6, 17, 1), (6, 18, 3),
-      (7, 19, 1), (7, 20, 2), (7, 21, 3),
-      (8, 22, 1), (8, 23, 3), (8, 24, 2);
-    `;
+    INSERT INTO shopping_bag (user_id, item_id, quantity) VALUES
+    (1, 1, 2), (1, 2, 1), (1, 3, 3),
+    (2, 4, 1), (2, 5, 2), (2, 6, 1),
+    (3, 7, 3), (3, 8, 1), (3, 9, 2),
+    (4, 10, 1), (4, 11, 3), (4, 12, 2),
+    (5, 13, 1), (5, 14, 1), (5, 15, 3),
+    (6, 16, 2), (6, 17, 1), (6, 18, 3),
+    (7, 19, 1), (7, 20, 2), (7, 21, 3),
+    (8, 22, 1), (8, 23, 3), (8, 24, 2)
+    ON CONFLICT (user_id, item_id) DO UPDATE
+    SET quantity = EXCLUDED.quantity;
+  `;
     await client.query(insertShoppingBagQueryStr);
 
     const insertReviewsQueryStr = `

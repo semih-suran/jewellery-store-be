@@ -21,35 +21,27 @@ const registerUser = (req, res, next) => {
 const loginUser = (req, res, next) => {
   const { email, password } = req.body;
 
-  console.log(`Login attempt for email: ${email}`);
-
   findUserByEmail(email)
     .then((user) => {
       if (!user) {
-        console.log(`No user found with email: ${email}`);
         return res.status(401).json({ message: "Invalid email" });
       }
 
-      console.log(`User found: ${user.email}`);
-
       bcrypt.compare(password, user.password).then((isMatch) => {
         if (!isMatch) {
-          console.log(`Invalid password for email: ${email}`);
           return res.status(401).json({ message: "Invalid password" });
         }
-        console.log(`Login successful for email: ${email}`);
 
-        // Generate JWT
         const token = jwt.sign(
           {
             userId: user.user_id,
             email: user.email,
             nickname: user.nickname,
+            picture: user.picture,
           },
           jwtSecret,
           { expiresIn: "1h" }
         );
-        // console.log("JWT_SECRET:", jwtSecret);
 
         res.status(200).json({ message: "Login successful", token });
       });
@@ -61,17 +53,14 @@ const loginUser = (req, res, next) => {
 };
 
 const googleLogin = async (req, res, next) => {
-  const { tokenId } = req.body.tokenId;
-  // console.log("Received tokenId:", tokenId);
+  const { tokenId } = req.body.tokenId.tokenId;
   try {
     const ticket = await client.verifyIdToken({
       idToken: tokenId,
       audience: process.env.REACT_APP_GOOGLE_CLIENT_ID,
     });
-    // console.log("Ticket:", ticket);
 
     const payload = ticket.getPayload();
-    console.log("Payload:", payload);
 
     const {
       given_name: firstName,
@@ -83,7 +72,6 @@ const googleLogin = async (req, res, next) => {
     findUserByEmail(email)
       .then((user) => {
         if (user) {
-          // Generate JWT for existing user
           const token = jwt.sign(
             {
               userId: user.user_id,
@@ -93,16 +81,15 @@ const googleLogin = async (req, res, next) => {
             jwtSecret,
             { expiresIn: "1h" }
           );
-          console.log("Existing user login successful, token:", token);
 
           res.status(200).json({ message: "Login successful", token });
         } else {
-          // Create a new user
           const newUser = {
             first_name: payload.given_name,
             last_name: payload.family_name,
             email: payload.email,
             password: payload.sub,
+            picture: payload.picture,
             nickname:
               payload.name || `${payload.given_name} ${payload.family_name}`,
           };
@@ -114,11 +101,11 @@ const googleLogin = async (req, res, next) => {
                   userId: createdUser.user_id,
                   email: createdUser.email,
                   nickname: createdUser.nickname,
+                  picture: createdUser.picture,
                 },
                 jwtSecret,
                 { expiresIn: "1h" }
               );
-              console.log("New user created and logged in, token:", token);
 
               res
                 .status(201)

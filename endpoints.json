@@ -246,7 +246,7 @@
 
   "JEWELLERY ENDPOINTS": {
     "description": " Endpoints for Jewellery Store",
-    "queries": ["JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE"],
+    "queries": ["JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE", "JEWELLERY STORE"],
     "exampleResponse": { "JEWELLERY": "STORE" }
   },
 
@@ -495,20 +495,21 @@
   "GET api/shoppingusers": {
     "description": "Retrieves All Shoppingusers",
     "body": {},
-    "exampleResponse": {
-      "user_id": 1,
-      "first_name": "Alexander",
-      "last_name": "Harrison",
-      "nickname": "Test_1",
-      "email": "alex.harrison@example.com",
-      "mobile_phone": "+12345678901",
-      "street": "456 Elm St",
-      "city": "Othertown",
-      "state": "IL",
-      "zipcode": "67890",
+    "exampleResponse": 	{
+      "user_id": 9,
+      "first_name": "Tyler",
+      "last_name": "Durden",
+      "nickname": "Test_999",
+      "email": "tylerdurden@fightclub.com",
+      "picture": "https://pbs.twimg.com/profile_images/737860519294558210/n10Zxn9x_400x400.jpg",
+      "mobile_phone": "+12345678904",
+      "street": "911 Pine St",
+      "city": "Fourthtown",
+      "state": "Lincolnshire",
+      "zipcode": "PE91ED",
       "country": "USA",
-      "created_at": "2024-07-25T10:02:47.075Z",
-      "updated_at": "2024-07-25T10:02:47.075Z"
+      "created_at": "2024-08-08T17:58:27.207Z",
+      "updated_at": "2024-08-08T18:01:10.965Z"
     }
   },
 
@@ -516,55 +517,61 @@
     "description": "Retrieves Shoppingusers by ID",
     "body": {},
     "exampleResponse": {
-      "user_id": 1,
-      "first_name": "Alexander",
-      "last_name": "Harrison",
-      "nickname": "Test_1",
-      "email": "alex.harrison@example.com",
-      "mobile_phone": "+12345678901",
-      "street": "456 Elm St",
-      "city": "Othertown",
-      "state": "IL",
-      "zipcode": "67890",
+      "user_id": 9,
+      "first_name": "Tyler",
+      "last_name": "Durden",
+      "nickname": "Test_999",
+      "email": "tylerdurden@fightclub.com",
+      "picture": "https://pbs.twimg.com/profile_images/737860519294558210/n10Zxn9x_400x400.jpg",
+      "mobile_phone": "+12345678904",
+      "street": "911 Pine St",
+      "city": "Fourthtown",
+      "state": "Lincolnshire",
+      "zipcode": "PE91ED",
       "country": "USA",
-      "created_at": "2024-07-25T10:02:47.075Z",
-      "updated_at": "2024-07-25T10:02:47.075Z"
+      "created_at": "2024-08-08T17:58:27.207Z",
+      "updated_at": "2024-08-08T18:01:10.965Z"
     }
   },
 
   "POST api/shoppingusers": {
     "description": "Creates a new Shoppinguser",
     "body":{
-      "firstName": "Avare",
-      "lastName": "Bu",
-      "nickname": "Test_9",
-      "email": "Avare@example.com",
+      "firstName": "Tyler",
+      "lastName": "Durden",
+      "nickname": "TD_FC",
+      "email": "tylerdurden@fightclub.com",
+			"password": "3294857234",
+			"picture": "https://pbs.twimg.com/profile_images/737860519294558210/n10Zxn9x_400x400.jpg",
       "mobilePhone": "+12345678904",
       "street": "901 Pine St",
       "city": "Fourthtown",
       "state": "Lincolnshire",
       "zipCode": "90124",
       "country": "UK"
-      },
+},
     "exampleResponse": {
       "user_id": 9,
-      "first_name": "Avare",
-      "last_name": "Bu",
-      "nickname": "Test_9",
-      "email": "Avare@example.com",
+      "first_name": "Tyler",
+      "last_name": "Durden",
+      "nickname": "TD_FC",
+      "email": "tylerdurden@fightclub.com",
+      "password": "$2b$10$ldXSCkx7/Yhv83YcbIQrGuRt7HFdkKLhxBx8D0ZIDGXdYQvg51DdG",
+      "picture": "https://pbs.twimg.com/profile_images/737860519294558210/n10Zxn9x_400x400.jpg",
       "mobile_phone": "+12345678904",
       "street": "901 Pine St",
       "city": "Fourthtown",
       "state": "Lincolnshire",
       "zipcode": "90124",
       "country": "UK",
-      "created_at": "2024-07-25T10:24:29.768Z",
-      "updated_at": "2024-07-25T10:24:29.768Z"
+      "created_at": "2024-08-08T17:58:27.207Z",
+      "updated_at": "2024-08-08T17:58:27.207Z"
     }
   },
  
   "PATCH api/shoppingusers/:user_id/address": {
     "description": "Updates Shoppinguser's address",
+    "queries": [":user_id"],
     "body": {
       "street": "911 Pine St",
       "city": "Fourthtown",
@@ -574,18 +581,19 @@
       },
     "exampleResponse": {
       "user_id": 9,
-      "first_name": "Avare",
-      "last_name": "Bu",
-      "nickname": "Test_9",
-      "email": "Avare@example.com",
+      "first_name": "Tyler",
+      "last_name": "Durden",
+      "nickname": "TD_FC",
+      "email": "tylerdurden@fightclub.com",
+      "picture": "https://pbs.twimg.com/profile_images/737860519294558210/n10Zxn9x_400x400.jpg",
       "mobile_phone": "+12345678904",
       "street": "911 Pine St",
       "city": "Fourthtown",
       "state": "Lincolnshire",
       "zipcode": "PE91ED",
       "country": "USA",
-      "created_at": "2024-07-25T10:24:29.768Z",
-      "updated_at": "2024-07-25T10:26:28.717Z"
+      "created_at": "2024-08-08T17:58:27.207Z",
+      "updated_at": "2024-08-08T18:00:16.952Z"
     }
   }, 
 
@@ -597,18 +605,19 @@
       },
     "exampleResponse": {
       "user_id": 9,
-      "first_name": "Avare",
-      "last_name": "Bu",
+      "first_name": "Tyler",
+      "last_name": "Durden",
       "nickname": "Test_999",
-      "email": "Avare@example.com",
+      "email": "tylerdurden@fightclub.com",
+      "picture": "https://pbs.twimg.com/profile_images/737860519294558210/n10Zxn9x_400x400.jpg",
       "mobile_phone": "+12345678904",
       "street": "911 Pine St",
       "city": "Fourthtown",
       "state": "Lincolnshire",
       "zipcode": "PE91ED",
       "country": "USA",
-      "created_at": "2024-07-25T10:24:29.768Z",
-      "updated_at": "2024-07-25T10:27:37.784Z"
+      "created_at": "2024-08-08T17:58:27.207Z",
+      "updated_at": "2024-08-08T18:01:10.965Z"
     }
   },
 
@@ -660,7 +669,7 @@
   },
 
   "DELETE /api/shoppingbag/:user_id/:item_id": {
-    "description": "Deletes an Item from Shoppingusers ShoppingBag",
+    "description": "Removes an Item from Shoppingusers ShoppingBag",
     "queries": [":user_id/:item_id"],
     "body": {},
     "exampleResponse": {}
@@ -704,7 +713,7 @@
   },
 
   "DELETE /api/shoppingfavourites/:user_id/:item_id": {
-    "description": "Deletes an Item from Shoppingusers Favourites",
+    "description": "Removes an Item from Shoppingusers Favourites",
     "queries": [":user_id/:item_id"],
     "body": {},
     "exampleResponse": {}

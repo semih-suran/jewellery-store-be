@@ -14,7 +14,7 @@ Check out the live demo of the Jewellery Store: [Jewellery Store Live Page](http
 
 ## Backend on Render
 
-Check out the Endpoints of the Jewellery Store: [Jewellery Store Endpoints](https://jewellery-store-be.onrender.com/api)
+Check out the Endpoints of the Jewellery Store: [Jewellery Store Endpoints](https://thenews-lhhv.onrender.com/api/)
 
 ## Tech Stack
 
@@ -73,8 +73,6 @@ Check out the Endpoints of the Jewellery Store: [Jewellery Store Endpoints](http
 - patch("/api/shoppingusers/:user_id/nickname", patchShoppingUserNickname);
 
 - post("/api/shoppingusers", postShoppingUser);
-
-
 
 ## Setup
 

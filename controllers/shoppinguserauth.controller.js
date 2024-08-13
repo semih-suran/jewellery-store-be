@@ -61,12 +61,12 @@ const googleLogin = async (req, res, next) => {
     });
 
     const payload = ticket.getPayload();
-
     const {
       given_name: firstName,
       family_name: lastName,
       email,
       sub: googleId,
+      picture: googlePicture,
     } = payload;
 
     findUserByEmail(email)
@@ -77,6 +77,7 @@ const googleLogin = async (req, res, next) => {
               userId: user.user_id,
               email: user.email,
               nickname: user.nickname,
+              picture: user.picture,
             },
             jwtSecret,
             { expiresIn: "1h" }
@@ -85,13 +86,12 @@ const googleLogin = async (req, res, next) => {
           res.status(200).json({ message: "Login successful", token });
         } else {
           const newUser = {
-            first_name: payload.given_name,
-            last_name: payload.family_name,
-            email: payload.email,
-            password: payload.sub,
-            picture: payload.picture,
-            nickname:
-              payload.name || `${payload.given_name} ${payload.family_name}`,
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            password: googleId,
+            picture: googlePicture,
+            nickname: payload.name || `${firstName} ${lastName}`,
           };
 
           createUser(newUser)

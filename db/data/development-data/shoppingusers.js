@@ -4,7 +4,7 @@ module.exports = [
     lastName: "Harrison",
     nickname: "Test_1",
     email: "alex.harrison@example.com",
-    password: "321321",
+    password: "$2b$10$CK5HnwRFpWNyLOFq5D/x7Of1hA5r8b8.Vsar68RNlcSwZ5DT.CBva",
     picture:
       "https://pm1.aminoapps.com/6677/4b4cb4a9cb453108eee66c4ceadf1d1e88d4b4ed_hq.jpg",
     mobilePhone: "+12345678901",
@@ -21,7 +21,7 @@ module.exports = [
     lastName: "Chen",
     nickname: "Test_2",
     email: "emily.chen@example.com",
-    password: "321321",
+    password: "$2b$10$CK5HnwRFpWNyLOFq5D/x7Of1hA5r8b8.Vsar68RNlcSwZ5DT.CBva",
     picture:
       "https://pm1.aminoapps.com/6677/4b4cb4a9cb453108eee66c4ceadf1d1e88d4b4ed_hq.jpg",
     mobilePhone: "+12345678902",
@@ -38,7 +38,7 @@ module.exports = [
     lastName: "Lee",
     nickname: "Test_3",
     email: "julian.lee@example.com",
-    password: "321321",
+    password: "$2b$10$CK5HnwRFpWNyLOFq5D/x7Of1hA5r8b8.Vsar68RNlcSwZ5DT.CBva",
     picture:
       "https://pm1.aminoapps.com/6677/4b4cb4a9cb453108eee66c4ceadf1d1e88d4b4ed_hq.jpg",
     mobilePhone: "+12345678903",
@@ -55,7 +55,7 @@ module.exports = [
     lastName: "Perez",
     nickname: "Test_4",
     email: "sofia.perez@example.com",
-    password: "321321",
+    password: "$2b$10$CK5HnwRFpWNyLOFq5D/x7Of1hA5r8b8.Vsar68RNlcSwZ5DT.CBva",
     picture:
       "https://pm1.aminoapps.com/6677/4b4cb4a9cb453108eee66c4ceadf1d1e88d4b4ed_hq.jpg",
     mobilePhone: "+12345678904",
@@ -72,7 +72,7 @@ module.exports = [
     lastName: "Martin",
     nickname: "Test_5",
     email: "ethan.martin@example.com",
-    password: "321321",
+    password: "$2b$10$CK5HnwRFpWNyLOFq5D/x7Of1hA5r8b8.Vsar68RNlcSwZ5DT.CBva",
     picture:
       "https://pm1.aminoapps.com/6677/4b4cb4a9cb453108eee66c4ceadf1d1e88d4b4ed_hq.jpg",
     mobilePhone: "+12345678905",
@@ -89,7 +89,7 @@ module.exports = [
     lastName: "Kim",
     nickname: "Test_6",
     email: "lily.kim@example.com",
-    password: "321321",
+    password: "$2b$10$CK5HnwRFpWNyLOFq5D/x7Of1hA5r8b8.Vsar68RNlcSwZ5DT.CBva",
     picture:
       "https://pm1.aminoapps.com/6677/4b4cb4a9cb453108eee66c4ceadf1d1e88d4b4ed_hq.jpg",
     mobilePhone: "+12345678906",
@@ -106,7 +106,7 @@ module.exports = [
     lastName: "Hall",
     nickname: "Test_7",
     email: "harrison.hall@example.com",
-    password: "321321",
+    password: "$2b$10$CK5HnwRFpWNyLOFq5D/x7Of1hA5r8b8.Vsar68RNlcSwZ5DT.CBva",
     picture:
       "https://pm1.aminoapps.com/6677/4b4cb4a9cb453108eee66c4ceadf1d1e88d4b4ed_hq.jpg",
     mobilePhone: "+12345678907",
@@ -123,7 +123,7 @@ module.exports = [
     lastName: "Hernandez",
     nickname: "Test_8",
     email: "ava.hernandez@example.com",
-    password: "321321",
+    password: "$2b$10$CK5HnwRFpWNyLOFq5D/x7Of1hA5r8b8.Vsar68RNlcSwZ5DT.CBva",
     picture:
       "https://pm1.aminoapps.com/6677/4b4cb4a9cb453108eee66c4ceadf1d1e88d4b4ed_hq.jpg",
     mobilePhone: "+12345678908",

@@ -99,10 +99,16 @@ app.post("/api/google-login", controllers.googleLogin);
 
 // Curator Users Routes
 app.get("/api/curator-users", controllers.getAllCuratorusers);
-app.get("/api/curator-users/:user_id", controllers.getCuratoruserById);
+app.get("/api/curator-users/:id", controllers.getCuratoruserById);
 app.post("/api/curator-users", controllers.postCuratoruser);
-app.patch("/api/curator-users/:user_id/address", controllers.patchCuratoruserAddress);
-app.patch("/api/curator-users/:user_id/nickname", controllers.patchCuratoruserNickname);
+app.patch(
+  "/api/curator-users/:user_id/address",
+  controllers.patchCuratoruserAddress
+);
+app.patch(
+  "/api/curator-users/:user_id/nickname",
+  controllers.patchCuratoruserNickname
+);
 
 // Authentication Routes for Curator Users
 app.post("/api/curator-register", controllers.curatorRegisterUser);

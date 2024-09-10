@@ -55,10 +55,25 @@ const {
 } = require("./shoppingfavourites.controller");
 
 const {
+  getAllCuratorusers,
+  getCuratoruserById,
+  postCuratoruser,
+  patchCuratoruserAddress,
+  patchCuratoruserNickname,
+} = require("./curator-users.controller");
+
+
+const {
   registerUser,
   loginUser,
   googleLogin,
 } = require("./shoppinguserauth.controller");
+
+const {
+  curatorRegisterUser,
+  curatorLoginUser,
+  curatorGoogleLogin,
+} = require("./curator-usersauth.controller");
 
 const { getAllEndpoints } = require("./endpoints.controller");
 
@@ -112,4 +127,12 @@ module.exports = {
   registerUser,
   loginUser,
   googleLogin,
+  curatorRegisterUser,
+  curatorLoginUser,
+  curatorGoogleLogin,
+  getAllCuratorusers,
+  getCuratoruserById,
+  postCuratoruser,
+  patchCuratoruserAddress,
+  patchCuratoruserNickname,
 };

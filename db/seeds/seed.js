@@ -25,11 +25,12 @@ const seed = async ({
     await client.query(`DROP TABLE IF EXISTS topics CASCADE;`);
     await client.query(`DROP TABLE IF EXISTS items CASCADE;`);
     await client.query(`DROP TABLE IF EXISTS shopping_users CASCADE;`);
+    await client.query(`DROP TABLE IF EXISTS curator_users CASCADE;`);
     await client.query(`DROP TABLE IF EXISTS shopping_favourites CASCADE;`);
     await client.query(`DROP TABLE IF EXISTS shopping_bag CASCADE;`);
     await client.query(`DROP TABLE IF EXISTS shopping_reviews CASCADE;`);
     await client.query(
-      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users, shopping_favourites, shopping_bag, shopping_reviews CASCADE;`
+      `DROP TABLE IF EXISTS comments, articles, users, topics, items, shopping_users, curator_users, shopping_favourites, shopping_bag, shopping_reviews CASCADE;`
     );
 
     console.log("Tables dropped successfully");
@@ -128,6 +129,29 @@ const seed = async ({
     `);
 
     console.log("shopping_users table created");
+
+    await client.query(`
+      CREATE TABLE curator_users (
+          user_id SERIAL PRIMARY KEY,
+          first_name TEXT NOT NULL,
+          last_name TEXT NOT NULL,
+          nickname TEXT NOT NULL,
+          email TEXT NOT NULL UNIQUE,
+          verified BOOLEAN NOT NULL,
+          password TEXT NOT NULL,
+          picture TEXT NOT NULL,
+          mobile_phone TEXT,
+          street TEXT,
+          city TEXT,
+          state TEXT,
+          zipcode TEXT,
+          country TEXT,
+          created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    console.log("curator_users table created");
 
     await client.query(`
       CREATE TABLE shopping_favourites (

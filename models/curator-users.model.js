@@ -13,11 +13,10 @@ const fetchAllCuratorusers = async () => {
   });
 };
 
-const fetchCuratoruserById = async (user_id) => {
-  const result = await db.query(
-    "SELECT * FROM curator_users WHERE user_id = $1;",
-    [user_id]
-  );
+const fetchCuratoruserById = async (id) => {
+  const result = await db.query("SELECT * FROM curator_users WHERE id = $1;", [
+    id,
+  ]);
   const user = result.rows[0];
   if (user) delete user.password;
   return user;
@@ -68,22 +67,22 @@ const createCuratoruser = async (user) => {
   return createdUser;
 };
 
-const updateCuratoruserAddress = async (user_id, address) => {
+const updateCuratoruserAddress = async (id, address) => {
   const { street, city, state, zipCode, country } = address;
   const result = await db.query(
     `UPDATE curator_users SET street = $2, city = $3, state = $4, zipcode = $5, country = $6, updated_at = NOW()
-    WHERE user_id = $1 RETURNING *;`,
-    [user_id, street, city, state, zipCode, country]
+    WHERE id = $1 RETURNING *;`,
+    [id, street, city, state, zipCode, country]
   );
   const updatedUser = result.rows[0];
   if (updatedUser) delete updatedUser.password;
   return updatedUser;
 };
 
-const updateCuratoruserNickname = async (user_id, nickname) => {
+const updateCuratoruserNickname = async (id, nickname) => {
   const result = await db.query(
-    `UPDATE curator_users SET nickname = $2, updated_at = NOW() WHERE user_id = $1 RETURNING *;`,
-    [user_id, nickname]
+    `UPDATE curator_users SET nickname = $2, updated_at = NOW() WHERE id = $1 RETURNING *;`,
+    [id, nickname]
   );
   const updatedUser = result.rows[0];
   if (updatedUser) delete updatedUser.password;

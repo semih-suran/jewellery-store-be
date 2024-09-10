@@ -132,7 +132,7 @@ const seed = async ({
 
     await client.query(`
       CREATE TABLE curator_users (
-          user_id SERIAL PRIMARY KEY,
+          id SERIAL PRIMARY KEY,
           first_name TEXT NOT NULL,
           last_name TEXT NOT NULL,
           nickname TEXT NOT NULL,

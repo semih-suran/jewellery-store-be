@@ -115,4 +115,15 @@ app.post("/api/curator-register", controllers.curatorRegisterUser);
 app.post("/api/curator-login", controllers.curatorLoginUser);
 app.post("/api/curator-google-login", controllers.curatorGoogleLogin);
 
+// Curator Exhibitions Routes
+app.get("/api/curator-exhibitions", controllers.getAllExhibitions);
+app.get(
+  "/api/curator-exhibitions/user/:user_id",
+  controllers.getExhibitionsByUser
+);
+app.get("/api/curator-exhibitions/:id", controllers.getExhibitionById);
+app.post("/api/curator-exhibitions", controllers.postExhibition);
+app.patch("/api/curator-exhibitions/:id", controllers.patchExhibitionById);
+app.delete("/api/curator-exhibitions/:id", controllers.deleteExhibition);
+
 module.exports = app;

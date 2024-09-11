@@ -62,6 +62,14 @@ const {
   patchCuratoruserNickname,
 } = require("./curator-users.controller");
 
+const {
+postExhibition,
+getAllExhibitions,
+getExhibitionsByUser,
+getExhibitionById,
+patchExhibitionById,
+deleteExhibition,
+} = require("./curator-exhibitions.controller");
 
 const {
   registerUser,
@@ -135,4 +143,10 @@ module.exports = {
   postCuratoruser,
   patchCuratoruserAddress,
   patchCuratoruserNickname,
+  postExhibition,
+  getAllExhibitions,
+  getExhibitionsByUser,
+  getExhibitionById,
+  patchExhibitionById,
+  deleteExhibition,
 };

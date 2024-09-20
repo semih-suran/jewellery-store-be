@@ -793,5 +793,279 @@
         "updated_at": "2024-08-05T11:54:04.374Z"
       }
     }
+  },
+  
+  "GET /api/curator-users": {
+    "description": "GET -ALL- curator-users",
+    "queries": [],
+    "body": {},
+    "exampleResponse": [
+      {
+        "id": 1,
+        "first_name": "Test",
+        "last_name": "Person",
+        "nickname": "Curator_tester",
+        "email": "test@test.com",
+        "verified": true,
+        "picture": "https://www.shareicon.net/data/128x128/2016/05/24/770107_man_512x512.png",
+        "mobile_phone": null,
+        "street": "Brick",
+        "city": "Tokyo",
+        "state": "NE",
+        "zipcode": "2NL",
+        "country": "Republic of Banana",
+        "created_at": "2024-09-20T12:13:53.699Z",
+        "updated_at": "2024-09-20T12:15:25.737Z"
+      }
+    ]
+  },
+  
+  "GET /api/curator-users/:id": {
+    "description": "GET a curator-user by ID",
+    "queries": [1],
+    "body": {},
+    "exampleResponse": {
+      "id": 1,
+      "first_name": "Test",
+      "last_name": "Person",
+      "nickname": "Curatort",
+      "email": "test@test.com",
+      "verified": true,
+      "picture": "https://www.shareicon.net/data/128x128/2016/05/24/770107_man_512x512.png",
+      "mobile_phone": null,
+      "street": "Brick",
+      "city": "Tokyo",
+      "state": "NE",
+      "zipcode": "2NL",
+      "country": "Republic of Banana",
+      "created_at": "2024-09-20T12:13:53.699Z",
+      "updated_at": "2024-09-20T12:15:25.737Z"
+    }
+  },
+
+  "GET /api/curator-exhibitions": {
+    "description": "GET -ALL- curator-exhibitions",
+    "queries": [],
+    "body": {},
+    "exampleResponse": [
+      {
+        "id": 13,
+        "user_id": 9,
+        "title": "Coin Trick",
+        "date": "2025-05-10T00:00:00.000Z",
+        "location": "Chicago",
+        "description": "flipping coins...",
+        "font": "'Merriweather', serif",
+        "background": "/media/background_14.jpg",
+        "exhibitions": [
+          "h228687",
+          "h184290",
+          "c10083",
+          "c10311",
+          "c9978",
+          "c9655"
+        ],
+        "updated_at": "2024-09-17T11:53:26.978Z",
+        "created_at": "2024-09-14T08:01:38.771Z"
+      }
+    ]
+  },
+
+  "GET /api/curator-exhibitions/:id": {
+    "description": "GET a curator-exhibition by ID",
+    "queries": [7],
+    "body": {},
+    "exampleResponse": {
+      "id": 7,
+      "user_id": 9,
+      "title": "Crystal Clear",
+      "date": "2024-12-09T00:00:00.000Z",
+      "location": "Cyoto",
+      "description": "Cry me a crysta",
+      "font": "sans-serif",
+      "background": "/media/background_3.jpg",
+      "exhibitions": [
+        "c14460",
+        "h204016",
+        "c157021"
+      ],
+      "updated_at": "2024-09-13T19:36:30.750Z",
+      "created_at": "2024-09-13T19:36:30.750Z"
+    }
+  },
+
+  "GET /api/curator-exhibitions/user/:id": {
+    "description": "GET a user's -ALL- curator-exhibitions",
+    "queries": [9],
+    "body": {},
+    "exampleResponse": [
+      {
+        "id": 13,
+        "user_id": 9,
+        "title": "Coin Trick",
+        "date": "2025-05-10T00:00:00.000Z",
+        "location": "Chicago",
+        "description": "flipping coins...",
+        "font": "'Merriweather', serif",
+        "background": "/media/background_14.jpg",
+        "exhibitions": [
+          "h228687",
+          "h184290",
+          "c10083",
+          "c10311",
+          "c9978",
+          "c9655"
+        ],
+        "updated_at": "2024-09-17T11:53:26.978Z",
+        "created_at": "2024-09-14T08:01:38.771Z"
+      }
+    ]
+  },
+
+  "POST /api/curator-users": {
+    "description": "POST a new curator-user",
+    "queries": [],
+    "body": {
+      "first_name": "Test",
+      "last_name": "Person",
+      "nickname": "Curatort",
+      "email": "test@test.com",
+      "password": "123456",
+      "verified": true,
+      "picture": "https://www.shareicon.net/data/128x128/2016/05/24/770107_man_512x512.png",
+      "mobile_phone": null,
+      "street": "Brick",
+      "city": "Tokyo",
+      "state": "NE",
+      "zipcode": "2NL",
+      "country": "Republic of Banana"
+    },
+    "exampleResponse": {
+      "user": {
+        "user_id": 11,
+        "first_name": "Test",
+        "last_name": "Person",
+        "nickname": "Curatort",
+        "email": "test@test.com",
+        "verified": true,
+        "picture": "https://www.shareicon.net/data/128x128/2016/05/24/770107_man_512x512.png",
+        "mobile_phone": null,
+        "street": "Brick",
+        "city": "Tokyo",
+        "state": "NE",
+        "zipcode": "2NL",
+        "country": "Republic of Banana",
+        "created_at": "2024-08-05T11:54:04.374Z",
+        "updated_at": "2024-08-05T11:54:04.374Z"
+      }
+    }
+  },
+
+  "POST /api/curator-exhibitions": {
+    "description": "POST a new curator-exhibition",
+    "queries": [],
+    "body": {
+      "title": "Soul's Food",
+      "date": "2024-09-22T00:00:00.000Z",
+      "location": "Rick's Dine'r",
+      "description": "nom nom nom,",
+      "font": "monospace",
+      "background": "/media/background_2.jpg",
+      "exhibitions": [
+        "c16398",
+        "c512",
+        "h238988",
+        "h241104",
+        "c522"
+      ]
+    },
+    "exampleResponse": {
+      "id": 28,
+      "user_id": null,
+      "title": "Soul's Food",
+      "date": "2024-09-22T00:00:00.000Z",
+      "location": "Rick's Dine'r",
+      "description": "nom nom nom,",
+      "font": "monospace",
+      "background": "/media/background_2.jpg",
+      "exhibitions": [
+        "c16398",
+        "c512",
+        "h238988",
+        "h241104",
+        "c522"
+      ],
+      "updated_at": "2024-09-20T12:50:12.796Z",
+      "created_at": "2024-09-20T12:50:12.796Z"
+    }
+  },
+
+  "PATCH /api/curator-users/:id/nickname": {
+    "description": "PATCH nickname of a curator-user",
+    "queries": [":id"],
+    "body": {
+      "nickname": "NewNickname"
+    }
+
+  },
+
+  "PATCH /api/curator-users/:id/address": {
+    "description": "PATCH address of a curator-user",
+    "queries": [":id"],
+    "body": {
+      "street": "Brick",
+      "city": "Tokyo",
+      "state": "NE",
+      "zipcode": "2NL",
+      "country": "Republic of Banana"
+    }
+  },
+
+  "PATCH /api/curator-exhibitions/:id": {
+    "description": "PATCH a curator-exhibition by ID",
+    "queries": [7],
+    "body": {
+      "title": "Soul's Food",
+      "date": "2024-09-22T00:00:00.000Z",
+      "location": "Rick's Dine'r",
+      "description": "nom nom nom,",
+      "font": "monospace",
+      "background": "/media/background_2.jpg",
+      "exhibitions": [
+        "c16398",
+        "c512",
+        "h238988",
+        "h241104",
+        "c522"
+      ]
+    },
+    "exampleResponse": {
+      "id": 7,
+      "user_id": 9,
+      "title": "Soul's Food",
+      "date": "2024-09-22T00:00:00.000Z",
+      "location": "Rick's Dine'r",
+      "description": "nom nom nom,",
+      "font": "monospace",
+      "background": "/media/background_2.jpg",
+      "exhibitions": [
+        "c16398",
+        "c512",
+        "h238988",
+        "h241104",
+        "c522"
+      ],
+      "updated_at": "2024-09-20T12:44:03.382Z",
+      "created_at": "2024-09-13T19:36:30.750Z"
+    }
+  },
+
+  "DELETE /api/curator-exhibitions/:id": {
+    "description": "DELETE a curator-exhibition by ID",
+    "queries": [":id"],
+    "body": {},
+    "exampleResponse": {
+      "msg": "Exhibition deleted successfully"
+    }
   }
 }

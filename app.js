@@ -102,11 +102,11 @@ app.get("/api/curator-users", controllers.getAllCuratorusers);
 app.get("/api/curator-users/:id", controllers.getCuratoruserById);
 app.post("/api/curator-users", controllers.postCuratoruser);
 app.patch(
-  "/api/curator-users/:user_id/address",
+  "/api/curator-users/:id/address",
   controllers.patchCuratoruserAddress
 );
 app.patch(
-  "/api/curator-users/:user_id/nickname",
+  "/api/curator-users/:id/nickname",
   controllers.patchCuratoruserNickname
 );
 
@@ -118,7 +118,7 @@ app.post("/api/curator-google-login", controllers.curatorGoogleLogin);
 // Curator Exhibitions Routes
 app.get("/api/curator-exhibitions", controllers.getAllExhibitions);
 app.get(
-  "/api/curator-exhibitions/user/:user_id",
+  "/api/curator-exhibitions/user/:id",
   controllers.getExhibitionsByUser
 );
 app.get("/api/curator-exhibitions/:id", controllers.getExhibitionById);

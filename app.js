@@ -118,7 +118,7 @@ app.post("/api/curator-google-login", controllers.curatorGoogleLogin);
 // Curator Exhibitions Routes
 app.get("/api/curator-exhibitions", controllers.getAllExhibitions);
 app.get(
-  "/api/curator-exhibitions/user/:id",
+  "/api/curator-exhibitions/user/:user_id",
   controllers.getExhibitionsByUser
 );
 app.get("/api/curator-exhibitions/:id", controllers.getExhibitionById);

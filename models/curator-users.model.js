@@ -68,11 +68,11 @@ const createCuratoruser = async (user) => {
 };
 
 const updateCuratoruserAddress = async (id, address) => {
-  const { street, city, state, zipCode, country } = address;
+  const { street, city, state, zipcode, country } = address;
   const result = await db.query(
     `UPDATE curator_users SET street = $2, city = $3, state = $4, zipcode = $5, country = $6, updated_at = NOW()
     WHERE id = $1 RETURNING *;`,
-    [id, street, city, state, zipCode, country]
+    [id, street, city, state, zipcode, country]
   );
   const updatedUser = result.rows[0];
   if (updatedUser) delete updatedUser.password;
